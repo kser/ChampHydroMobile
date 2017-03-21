@@ -1,0 +1,52 @@
+<!--
+  Generated template for the ProjectDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{selectedProject}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Comments</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Bullet #1</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Bullet #2</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Bullet #3</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <h2>Photos</h2>
+  <div text-center>
+    <div>
+      <img [src]="imageSrc" *ngIf="imageSrc" />
+      <img [src]="imageURL" *ngIf="imageURL" />
+    </div>
+    <button ion-button icon-only outline (click)="openGallery()">
+      <ion-icon name="images"></ion-icon>
+    </button>
+    <button ion-button icon-only outline (click)="takePhoto()">
+      <ion-icon name="camera"></ion-icon>
+    </button>
+    <p>Choose a Photo</p>
+  </div>
+
+  
+
+</ion-content>
