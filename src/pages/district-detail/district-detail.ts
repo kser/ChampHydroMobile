@@ -31,6 +31,10 @@ export class DistrictDetailPage {
     });
   }
 
+  buildReport() {
+    console.log(this.selectedDistrict);
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad DistrictDetailPage');
   }

@@ -10,16 +10,21 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Districts</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addDistrict()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let district of districts">
+    <ion-item-sliding *ngFor="let district of currentDistricts">
       <button ion-item (click)="openDistrict(district)">
         <ion-thumbnail item-left>
-          <img [src]="district.mapImage" />
+          <img [src]="district.districtMap" />
         </ion-thumbnail>
         <h2>{{district.name}}</h2>
         <p>This has {{district.numProjects}} projects</p>
@@ -27,7 +32,7 @@
       </button>
 
       <ion-item-options>
-        <button ion-button color="danger" (click)="deleteItem(item)">
+        <button ion-button color="danger" (click)="deleteDistrict(district)">
           Delete
         </button>
       </ion-item-options>
