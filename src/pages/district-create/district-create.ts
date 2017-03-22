@@ -43,7 +43,7 @@ export class DistrictCreatePage {
   getMap() {
     let cameraOptions = {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.FILE_URI,      
+      destinationType: Camera.DestinationType.DATA_URL,      
       quality: 75,
       targetWidth: 96,
       targetHeight: 96,
