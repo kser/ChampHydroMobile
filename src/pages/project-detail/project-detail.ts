@@ -65,7 +65,7 @@ export class ProjectDetailPage {
     }
   }
 
-  processWebImage(event, isPhoto1) {
+  processWebImage(event) {
     let input = this.fileInput.nativeElement;
 
     var reader = new FileReader();
@@ -74,20 +74,17 @@ export class ProjectDetailPage {
 
       var imageData = (readerEvent.target as any).result;
 
-      isPhoto1 ? this.form.patchValue({ 'photo1': imageData }): this.form.patchValue({ 'photo2': imageData });;
+      this.form.patchValue({ 'photo1': imageData });
 
     };
 
     reader.readAsDataURL(event.target.files[0]);
   }
 
-  getPhoto1ImageStyle() {
+  getPhotoImageStyle() {
     return 'url(' + this.form.controls['photo1'].value + ')'
   }
 
-  getPhoto2ImageStyle() {
-    return 'url(' + this.form.controls['photo2'].value + ')'
-  }
   /**
    * The user cancelled, so we dismiss without sending data back.
    */
@@ -102,6 +99,7 @@ export class ProjectDetailPage {
   save() {
     if(!this.form.valid) { return; }
     this.viewCtrl.dismiss(this.form.value);
+    console.log(this.form.value);
   }
 
   }

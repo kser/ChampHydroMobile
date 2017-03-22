@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
+import { DistrictService }  from '../../providers/district.service';
+
 import { District } from '../../models/district';
 import { Project } from '../../models/project';
 
@@ -21,7 +23,7 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
   }
 
@@ -29,8 +31,8 @@ export class DistrictDetailPage {
     let addModal = this.modalCtrl.create(ProjectDetailPage, {
       project: project
     });
-    addModal.onDidDismiss(district => {
-      if (district) {
+    addModal.onDidDismiss(project => {
+      if (project) {
         //this.districtService.add(district);
       }
     })
@@ -42,7 +44,7 @@ export class DistrictDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DistrictDetailPage');
+    console.log(this.selectedDistrict);
   }
 
 }

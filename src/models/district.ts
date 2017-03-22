@@ -6,10 +6,8 @@
  * that something that fits your app as well.
  */
 export class District {
-    // id: number;
     // name: string;
     // mapImage: string;
-    // numProjects: number;
     // projects: string[];
 
   constructor(private fields: any) {
@@ -18,5 +16,22 @@ export class District {
       this[f] = fields[f];
     }
   }
+
+  // addProject(project){
+  //       this.projects.push({
+  //           name: project.name,
+  //           bullet1: project.bullet1
+  //       });
+  //   }
+ 
+  //   removeProject(project){
+ 
+  //       for(let i = 0; i < this.projects.length; i++) {
+  //           if(this.projects[i] == project){
+  //               this.projects.splice(i, 1);
+  //           }
+  //       }
+ 
+  //   }
 
 }

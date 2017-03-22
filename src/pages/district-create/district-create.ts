@@ -27,7 +27,7 @@ export class DistrictCreatePage {
     this.form = formBuilder.group({
       districtMap: [''],
       name: ['', Validators.required],
-      numProjects: ['']
+      projects: ['']
     });
 
     // Watch the form for changes, and
@@ -94,5 +94,6 @@ export class DistrictCreatePage {
   done() {
     if(!this.form.valid) { return; }
     this.viewCtrl.dismiss(this.form.value);
+    console.log(this.form.value);
   }
 }

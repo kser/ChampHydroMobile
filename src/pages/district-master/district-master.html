@@ -27,8 +27,8 @@
           <img [src]="district.districtMap" />
         </ion-thumbnail>
         <h2>{{district.name}}</h2>
-        <p>This has {{district.numProjects}} projects</p>
-        <ion-note item-right *ngIf="district.numProjects">{{district.numProjects}}</ion-note>
+        <p>This has {{district.projects.length}} projects</p>
+        <ion-note item-right *ngIf="district.projects">{{district.projects.length}}</ion-note>
       </button>
 
       <ion-item-options>

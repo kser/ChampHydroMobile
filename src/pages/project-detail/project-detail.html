@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{selectedProject}}</ion-title>
+    <ion-title>{{selectedProject.name}}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="save()" [disabled]="!isReadyToSave" strong>
         <span ion-text color="primary" showWhen="ios">
@@ -40,26 +40,15 @@
     </ion-list>
 
   <h2>Photos</h2>
-    <!-- <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event, true)"/> -->
+     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"/> 
     <div class="profile-image-wrapper" (click)="getPicture()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo1.value">
         <ion-icon name="add"></ion-icon>
         <div>
-          Select Photo 1
+          Select Photo
         </div>
       </div>
-      <div class="profile-image" [style.backgroundImage]="getPhoto1ImageStyle(true)" *ngIf="this.form.controls.photo1.value"></div>
-    </div>
-
-    <!-- <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event, false)"/> -->
-    <div class="profile-image-wrapper" (click)="getPicture()">
-      <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo2.value">
-        <ion-icon name="add"></ion-icon>
-        <div>
-          Select Photo 2
-        </div>
-      </div>
-      <div class="profile-image" [style.backgroundImage]="getPhoto2ImageStyle(false)" *ngIf="this.form.controls.photo2.value"></div>
+      <div class="profile-image" [style.backgroundImage]="getPhotoImageStyle()" *ngIf="this.form.controls.photo1.value"></div>
     </div>
   </form>
 
