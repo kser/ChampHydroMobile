@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { District } from '../../models/district';
 import { Project } from '../../models/project';
@@ -21,14 +21,20 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams) {
+  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController) {
     this.selectedDistrict = navParams.get('district');
   }
 
-  openProject(project: string) {
-    this.navCtrl.push(ProjectDetailPage, {
+  editProject(project: string) {
+    let addModal = this.modalCtrl.create(ProjectDetailPage, {
       project: project
     });
+    addModal.onDidDismiss(district => {
+      if (district) {
+        //this.districtService.add(district);
+      }
+    })
+    addModal.present();
   }
 
   buildReport() {

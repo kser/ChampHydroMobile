@@ -1,57 +1,109 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-//import { Project } from '../../models/project';
+
 
 import { Camera } from 'ionic-native';
 
-/*
-  Generated class for the ProjectDetail page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-project-detail',
   templateUrl: 'project-detail.html'
 })
 export class ProjectDetailPage {
+  @ViewChild('fileInput') fileInput;
 
   selectedProject: string;
-  private imageSrc: string;
-  imageURL
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  form: FormGroup;
+
+  isReadyToSave: boolean;
+
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, formBuilder: FormBuilder) {
     this.selectedProject = navParams.get('project');
+
+    this.form = formBuilder.group({
+      bullet1: ['', Validators.required],
+      bullet2: [''],
+      bullet3: [''],
+      photo1: [''],
+      photo2: ['']
+    });
+
+    // Watch the form for changes, and
+    this.form.valueChanges.subscribe((v) => {
+      this.isReadyToSave = this.form.valid;
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectDetailPage');
   }
 
-  takePhoto() {
-    Camera.getPicture().then((imageData) => {
-      this.imageURL = imageData
-    }, (err) => {
-      console.log(err);
-    });
-  }
-
-  openGallery(){
+  getPicture() {
     let cameraOptions = {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.FILE_URI,      
+      destinationType: Camera.DestinationType.DATA_URL,      
       quality: 75,
-      targetWidth: 300,
-      targetHeight: 300,
+      targetWidth: 96,
+      targetHeight: 96,
       encodingType: Camera.EncodingType.JPEG,      
       correctOrientation: true
     }
-    
-    Camera.getPicture(cameraOptions)
-      .then(file_uri => this.imageSrc = file_uri, 
-      err => console.log(err));
+    if (Camera['installed']()) {
+      Camera.getPicture(cameraOptions)
+      .then((data) => {
+        this.form.patchValue({ 'photo1': 'data:image/jpg;base64,' +  data });
+      }, (err) => {
+        alert('Unable to load map');
+      })
+    } else {
+      this.fileInput.nativeElement.click();
     }
+  }
+
+  processWebImage(event, isPhoto1) {
+    let input = this.fileInput.nativeElement;
+
+    var reader = new FileReader();
+    reader.onload = (readerEvent) => {
+      input.parentNode.removeChild(input);
+
+      var imageData = (readerEvent.target as any).result;
+
+      isPhoto1 ? this.form.patchValue({ 'photo1': imageData }): this.form.patchValue({ 'photo2': imageData });;
+
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  getPhoto1ImageStyle() {
+    return 'url(' + this.form.controls['photo1'].value + ')'
+  }
+
+  getPhoto2ImageStyle() {
+    return 'url(' + this.form.controls['photo2'].value + ')'
+  }
+  /**
+   * The user cancelled, so we dismiss without sending data back.
+   */
+  cancel() {
+    this.viewCtrl.dismiss();
+  }
+
+  /**
+   * The user is done and wants to create the district, so return it
+   * back to the presenter.
+   */
+  save() {
+    if(!this.form.valid) { return; }
+    this.viewCtrl.dismiss(this.form.value);
+  }
+
   }
 
 

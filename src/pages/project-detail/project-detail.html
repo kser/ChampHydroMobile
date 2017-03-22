@@ -8,6 +8,14 @@
 
   <ion-navbar>
     <ion-title>{{selectedProject}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="save()" [disabled]="!isReadyToSave" strong>
+        <span ion-text color="primary" showWhen="ios">
+          Save
+        </span>
+        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -15,38 +23,44 @@
 
 <ion-content padding>
   <h2>Comments</h2>
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>Bullet #1</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Bullet #2</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label stacked>Bullet #3</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-  </ion-list>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProject()">
+      <ion-list>
+      <ion-item>
+        <ion-label floating>Bullet #1</ion-label>
+        <ion-input type="text" formControlName="bullet1"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Bullet #2</ion-label>
+        <ion-input type="text" formControlName="bullet2"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Bullet #3</ion-label>
+        <ion-input type="text" formControlName="bullet3"></ion-input>
+      </ion-item>
+    </ion-list>
 
   <h2>Photos</h2>
-  <div text-center>
-    <div>
-      <img [src]="imageSrc" *ngIf="imageSrc" />
-      <img [src]="imageURL" *ngIf="imageURL" />
+    <!-- <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event, true)"/> -->
+    <div class="profile-image-wrapper" (click)="getPicture()">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo1.value">
+        <ion-icon name="add"></ion-icon>
+        <div>
+          Select Photo 1
+        </div>
+      </div>
+      <div class="profile-image" [style.backgroundImage]="getPhoto1ImageStyle(true)" *ngIf="this.form.controls.photo1.value"></div>
     </div>
-    <button ion-button icon-only outline (click)="openGallery()">
-      <ion-icon name="images"></ion-icon>
-    </button>
-    <button ion-button icon-only outline (click)="takePhoto()">
-      <ion-icon name="camera"></ion-icon>
-    </button>
-    <p>Choose a Photo</p>
-  </div>
 
-  
+    <!-- <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event, false)"/> -->
+    <div class="profile-image-wrapper" (click)="getPicture()">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo2.value">
+        <ion-icon name="add"></ion-icon>
+        <div>
+          Select Photo 2
+        </div>
+      </div>
+      <div class="profile-image" [style.backgroundImage]="getPhoto2ImageStyle(false)" *ngIf="this.form.controls.photo2.value"></div>
+    </div>
+  </form>
 
 </ion-content>

@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let project of selectedDistrict.projects">
-      <button ion-item (click)="openProject(project)">
+      <button ion-item (click)="editProject(project)">
         <ion-icon name="image" item-left></ion-icon>
         <h2>{{project}}</h2>
         <p>Last recon on 11/12/16</p>
