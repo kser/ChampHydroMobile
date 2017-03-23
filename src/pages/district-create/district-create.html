@@ -24,24 +24,33 @@
 
 
 <ion-content>
-  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createDistrict()">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createDistrict(form)" novalidate>
     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"/>
     <div class="profile-image-wrapper" (click)="getMap()">
-      <div class="profile-image-placeholder" *ngIf="!this.form.controls.districtMap.value">
+      <div class="profile-image-placeholder" *ngIf="!this.form.controls.map.value">
         <ion-icon name="add"></ion-icon>
         <div>
           Select District Map
         </div>
       </div>
-      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.districtMap.value"></div>
+      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.map.value"></div>
     </div>
     <ion-list>
       <ion-item>
         <ion-input type="text" placeholder="District Name" formControlName="name"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-input type="text" placeholder="Projects" formControlName="projects"></ion-input>
-      </ion-item>
+
+      <!-- Project input -->
+      <div formArrayName="projects">
+        <div *ngFor="let project of form.controls.projects.controls; let i=index">
+          <div [formGroupName]="i">
+            <ion-item>
+              <ion-input type="text" formControlName="name" placeholder="Project {{i + 1}}" ></ion-input>
+            </ion-item>
+          </div>
+        </div>
+      </div>
+      <button ion-button outline (click)=addProject()>Add a Project</button>
     </ion-list>
   </form>
 </ion-content>

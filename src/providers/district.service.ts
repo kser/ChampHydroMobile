@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { District } from '../models/district';
+// import { Project } from '../models/project';
 
 import { DISTRICTS } from '../mocks/mock-districts';
 
@@ -9,24 +10,17 @@ import { DISTRICTS } from '../mocks/mock-districts';
 export class DistrictService {
   districts: District[] = [];
 
-  defaultDistrict: any = { 
-    "id": "468", 
-    "name": "HC MUD 468", 
-    "districtMap": "assets/img/DistrictMaps/mud-468-map.jpg", 
-    "projects": [
-      {"name":"Vintage Southeast Detention Pond"}
+  defaultDistrict: any = {  
+    name: "HC MUD 468", 
+    map: "assets/img/DistrictMaps/mud-468-map.jpg", 
+    projects: [
+      {name:"Vintage Southeast Detention Pond"}
       ] 
   };
   
   
   constructor(public http: Http) {
-    let districts = DISTRICTS;
-
-    for(let district of districts) {
-       this.districts.push(new District(district));
-     }
-
-     console.log(this.districts);
+    this.districts=DISTRICTS;
   }
 
   query(params?: any) {

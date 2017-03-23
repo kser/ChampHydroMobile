@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { NavController, ViewController } from 'ionic-angular';
 
 import { Camera } from 'ionic-native';
@@ -23,11 +23,13 @@ export class DistrictCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, private formBuilder: FormBuilder) {
     this.form = formBuilder.group({
-      districtMap: [''],
+      map: [''],
       name: ['', Validators.required],
-      projects: ['']
+      projects: this.formBuilder.array([
+        this.initProject()
+      ])
     });
 
     // Watch the form for changes, and
@@ -38,6 +40,30 @@ export class DistrictCreatePage {
 
   ionViewDidLoad() {
 
+  }
+
+  createDistrict(model) {
+    console.log(model);
+  }
+  
+  initProject() {
+        // initialize our address
+        return this.formBuilder.group({
+            name: [''],
+            map: ['']
+        });
+    }
+
+  addProject() {
+      // add address to the list
+      const control = <FormArray>this.form.controls['projects'];
+      control.push(this.initProject());
+  }
+
+  removeProject(i: number) {
+      // remove address from the list
+      const control = <FormArray>this.form.controls['projects'];
+      control.removeAt(i);
   }
 
   getMap() {
@@ -53,7 +79,7 @@ export class DistrictCreatePage {
     if (Camera['installed']()) {
       Camera.getPicture(cameraOptions)
       .then((data) => {
-        this.form.patchValue({ 'districtMap': 'data:image/jpg;base64,' +  data });
+        this.form.patchValue({ 'map': 'data:image/jpg;base64,' +  data });
       }, (err) => {
         alert('Unable to load map');
       })
@@ -70,14 +96,14 @@ export class DistrictCreatePage {
       input.parentNode.removeChild(input);
 
       var imageData = (readerEvent.target as any).result;
-      this.form.patchValue({ 'districtMap': imageData });
+      this.form.patchValue({ 'map': imageData });
     };
 
     reader.readAsDataURL(event.target.files[0]);
   }
 
   getProfileImageStyle() {
-    return 'url(' + this.form.controls['districtMap'].value + ')'
+    return 'url(' + this.form.controls['map'].value + ')'
   }
 
   /**

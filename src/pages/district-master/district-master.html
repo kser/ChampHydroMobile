@@ -24,7 +24,7 @@
     <ion-item-sliding *ngFor="let district of currentDistricts">
       <button ion-item (click)="openDistrict(district)">
         <ion-thumbnail item-left>
-          <img [src]="district.districtMap" />
+          <img [src]="district.map" />
         </ion-thumbnail>
         <h2>{{district.name}}</h2>
         <p>This has {{district.projects.length}} projects</p>
