@@ -48,7 +48,7 @@ export class DistrictDetailPage {
     });
     addModal.onDidDismiss(project => {
       if (project) {
-        //this.districtService.add(district);
+        this.selectedDistrict.addProject(project);
       }
     })
     addModal.present();

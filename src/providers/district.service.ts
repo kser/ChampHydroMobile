@@ -42,7 +42,7 @@ export class DistrictService {
   }
 
   add(district: District) {
-    this.districts.push(district);
+    this.districts.push(new District(district.name, district.map));
   }
 
   delete(district: District) {

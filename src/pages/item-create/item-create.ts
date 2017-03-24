@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, ViewController } from 'ionic-angular';
 
 import { Camera } from 'ionic-native';
@@ -27,9 +27,9 @@ export class ItemCreatePage {
     this.form = formBuilder.group({
       map: [''],
       name: ['', Validators.required],
-      projects: this.formBuilder.array([
-        this.initProject()
-      ])
+      // projects: this.formBuilder.array([
+      //   this.initProject()
+      // ])
     });
 
     // Watch the form for changes, and
@@ -46,25 +46,25 @@ export class ItemCreatePage {
     console.log(model);
   }
   
-  initProject() {
-        // initialize our address
-        return this.formBuilder.group({
-            name: [''],
-            map: ['']
-        });
-    }
+  // initProject() {
+  //       // initialize our address
+  //       return this.formBuilder.group({
+  //           name: [''],
+  //           map: ['']
+  //       });
+  //   }
 
-  addProject() {
-      // add address to the list
-      const control = <FormArray>this.form.controls['projects'];
-      control.push(this.initProject());
-  }
+  // addProject() {
+  //     // add address to the list
+  //     const control = <FormArray>this.form.controls['projects'];
+  //     control.push(this.initProject());
+  // }
 
-  removeProject(i: number) {
-      // remove address from the list
-      const control = <FormArray>this.form.controls['projects'];
-      control.removeAt(i);
-  }
+  // removeProject(i: number) {
+  //     // remove address from the list
+  //     const control = <FormArray>this.form.controls['projects'];
+  //     control.removeAt(i);
+  // }
 
   getMap() {
     let cameraOptions = {
