@@ -11,14 +11,12 @@ export class District {
           project.map,
         ));
     }
- 
-  //   removeProject(project){
- 
-  //       let index = this.projects.indexOf(project);
-  //       if(index > -1 ) {
-  //         this.projects.splice(index,1);
-  //       }
- 
-  //   }
-
+    
+    removeProject(project){
+      
+      let index = this.projects.indexOf(project);
+      if(index > -1 ) {
+        this.projects.splice(index,1);
+      }
+    }
 }

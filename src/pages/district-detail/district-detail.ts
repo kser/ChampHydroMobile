@@ -7,6 +7,7 @@ import { District } from '../../models/district';
 import { Project } from '../../models/project';
 
 import { ProjectDetailPage }  from '../project-detail/project-detail';
+import { ItemCreatePage }  from '../item-create/item-create';
 
 /*
   Generated class for the DistrictDetail page.
@@ -27,6 +28,20 @@ export class DistrictDetailPage {
     this.selectedDistrict = navParams.get('district');
   }
 
+  /**
+   * Prompt the user to add a new district. This shows our DistrictCreatePage in a
+   * modal and then adds the new district to our data source if the user created one.
+   */
+  addProject() {
+    let addModal = this.modalCtrl.create(ItemCreatePage);
+    addModal.onDidDismiss(project => {
+      if (project) {
+        this.selectedDistrict.addProject(project);
+      }
+    })
+    addModal.present();
+  }
+
   editProject(project: string) {
     let addModal = this.modalCtrl.create(ProjectDetailPage, {
       project: project
@@ -37,6 +52,13 @@ export class DistrictDetailPage {
       }
     })
     addModal.present();
+  }
+  
+  /**
+   * Delete a project from the list of projects.
+   */
+  deleteProject(project) {
+    this.selectedDistrict.removeProject(project);
   }
 
   buildReport() {

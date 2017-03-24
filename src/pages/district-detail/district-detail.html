@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>{{selectedDistrict.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addProject()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -24,7 +29,7 @@
       </button>
 
       <ion-item-options>
-        <button ion-button color="danger" (click)="deleteItem(item)">
+        <button ion-button color="danger" (click)="deleteProject(project)">
           Delete
         </button>
       </ion-item-options>

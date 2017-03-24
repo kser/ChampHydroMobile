@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Create District</ion-title>
+    <ion-title>Create Item</ion-title>
     <ion-buttons start>
       <button ion-button (click)="cancel()">
         <span ion-text color="primary" showWhen="ios">
@@ -24,23 +24,23 @@
 
 
 <ion-content>
-  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createDistrict(form)" novalidate>
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem(form)" novalidate>
     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"/>
     <div class="profile-image-wrapper" (click)="getMap()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.map.value">
         <ion-icon name="add"></ion-icon>
         <div>
-          Select District Map
+          Select Map
         </div>
       </div>
       <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.map.value"></div>
     </div>
     <ion-list>
       <ion-item>
-        <ion-input type="text" placeholder="District Name" formControlName="name"></ion-input>
+        <ion-input type="text" placeholder="Name" formControlName="name"></ion-input>
       </ion-item>
 
-      <!-- Project input -->
+      <!-- Project input todo: remove this option -->
       <div formArrayName="projects">
         <div *ngFor="let project of form.controls.projects.controls; let i=index">
           <div [formGroupName]="i">

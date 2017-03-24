@@ -5,21 +5,21 @@ import { NavController, ViewController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 
 /*
-  Generated class for the DistrictCreate page.
+  Generated class for the ItemCreatePage. used to create District and Project objects
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-district-create',
-  templateUrl: 'district-create.html'
+  selector: 'page-item-create',
+  templateUrl: 'item-create.html'
 })
-export class DistrictCreatePage {
+export class ItemCreatePage {
   @ViewChild('fileInput') fileInput;
 
   isReadyToSave: boolean;
 
-  district: any;
+  item: any;
 
   form: FormGroup;
 
@@ -42,7 +42,7 @@ export class DistrictCreatePage {
 
   }
 
-  createDistrict(model) {
+  createItem(model) {
     console.log(model);
   }
   

@@ -5,7 +5,7 @@ import { MyApp } from './app.component';
 import { DistrictMasterPage } from '../pages/district-master/district-master';
 import { DistrictDetailPage } from '../pages/district-detail/district-detail';
 import { ProjectDetailPage } from '../pages/project-detail/project-detail';
-import { DistrictCreatePage } from '../pages/district-create/district-create';
+import { ItemCreatePage } from '../pages/item-create/item-create';
 
 import { DistrictService }  from '../providers/district.service';
 
@@ -16,7 +16,7 @@ import { DistrictService }  from '../providers/district.service';
     DistrictMasterPage,
     DistrictDetailPage,
     ProjectDetailPage,
-    DistrictCreatePage
+    ItemCreatePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -27,7 +27,7 @@ import { DistrictService }  from '../providers/district.service';
     DistrictMasterPage,
     DistrictDetailPage,
     ProjectDetailPage,
-    DistrictCreatePage
+    ItemCreatePage
   ],
   providers: [ DistrictService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

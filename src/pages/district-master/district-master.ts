@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
 
 import { DistrictDetailPage } from '../district-detail/district-detail';
-import { DistrictCreatePage } from '../district-create/district-create';
+import { ItemCreatePage } from '../item-create/item-create';
 
 import { District }   from '../../models/district';
 import { DistrictService }  from '../../providers/district.service';
@@ -29,7 +29,7 @@ export class DistrictMasterPage {
    * modal and then adds the new district to our data source if the user created one.
    */
   addDistrict() {
-    let addModal = this.modalCtrl.create(DistrictCreatePage);
+    let addModal = this.modalCtrl.create(ItemCreatePage);
     addModal.onDidDismiss(district => {
       if (district) {
         this.districtService.add(district);
