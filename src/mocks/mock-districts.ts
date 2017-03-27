@@ -15,93 +15,87 @@ export const DISTRICTS:District[] = [
       new Project("Detention Pond 2")
       ]
     ),
-  // { 
-  //   name: "HC MUD 468", 
-  //   map: "assets/img/DistrictMaps/mud-468-map.jpg", 
-  //   projects: [
-  //     { name: "Vintage Southeast Detention Pond", map:"", bullet1: "hi", photo1:"" }
-  //     ]
-  //   },
-  //   { 
-  //   name: "FBC MUD 158", 
-  //   map: "assets/img/DistrictMaps/mud-158-map.jpg", 
-  //   projects: [
-  //     { name: "River Run Drainage Channel", map:"", bullet1: "hello", photo1:"" }
-  //     ]
-  //   },
-  //   { 
-  //     name: 'FBC MUD 159', map: "assets/img/DistrictMaps/mud-159-map.jpg", 
-  //     projects: [
-  //       {name:"Oaks of Rosenberg", map:"", bullet1: "", photo1:""}
-  //     ] 
-  //   },
-  //   { 
-  //     name: 'FBC MUD 167', map: "assets/img/DistrictMaps/mud-167-map.jpg",
-  //     projects: [
-  //       { name: "Detention Pond 1", map:"", bullet1: "", photo1:""}, 
-  //       { name: "Detention Pond 2", map:"", bullet1: "", photo1:""}
-  //     ] 
-  //   },
-      // { 
-      //   name: 'HC MUD 374', map: "assets/img/DistrictMaps/mud-374-map.jpg", 
-      //   projects: [
-      //     {name:"Channel A" }, 
-      //     {name:"Drop Pool 1"}, 
-      //     {name:"Drop Pool 2"}, 
-      //     {name:"Channel B"}, 
-      //     {name:"Mound Road Pond"}, 
-      //     {name:"Channel C"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 433', map: "assets/img/DistrictMaps/mud-433-map.jpg",
-      //   projects: [
-      //     {name:"IDC 1"}, 
-      //     {name:"IDC 2"}, 
-      //     {name:"IDC 3"}, 
-      //     {name:"IDC 4"}, 
-      //     {name:"IDC 5"}, 
-      //     {name:"Drainage Channel Phase II"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 106', map: "assets/img/DistrictMaps/mud-106-map.jpg", 
-      //   projects: [
-      //     {name:"Commercial Mix Pond"}, 
-      //     {name:"Eagle Springs North Channel"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 290', map: "assets/img/DistrictMaps/mud-290-map.jpg",
-      //   projects: [
-      //     {name:"Eagle Springs"}, 
-      //     {name:"Eagle Springs Detention Pond"}, 
-      //     {name:"Williams Gully"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 238', map: "assets/img/DistrictMaps/mud-238-map.jpg",
-      //   projects: [
-      //     {name:"Oakridge Detention Pond"}, 
-      //     {name:"Barker's Crossing Pond"}, 
-      //     {name:"Lake Ridge Pond"}, 
-      //     {name:"Facilities"}, 
-      //     {name:"Harris County Channels"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 157', map: "assets/img/DistrictMaps/mud-157-map.jpg", 
-      //   projects: [
-      //     {name:"FM 529 Retail center Detention Pond"}
-      //     ] 
-      //   },
-      // { 
-      //   name: 'HC MUD 285', map: "assets/img/DistrictMaps/mud-285-map.jpg", 
-      //   projects: [
-      //     {name:"New Forest Channel"}, 
-      //     {name:"Carpenter's Landing"}, 
-      //     {name:"Liberty Lakes"}, 
-      //     {name:"New Forest Pond"}
-      //     ] 
-      //   }
+    new District(
+    "FBC MUD 158", 
+    "assets/img/DistrictMaps/mud-158-map.jpg",
+    [
+      new Project("River Run Drainage Channel"),
+      ]
+    ),
+    new District(
+    "FBC MUD 159", 
+    "assets/img/DistrictMaps/mud-159-map.jpg",
+    [
+      new Project("Oaks of Rosenberg"),
+      ]
+    ),
+    new District(
+    "HC MUD 374", 
+    "assets/img/DistrictMaps/mud-374-map.jpg",
+    [
+      new Project("Channel A"),
+      new Project("Drop Pool 1"),
+      new Project("Drop Pool 2"),
+      new Project("Channel B"),
+      new Project("Mound Road Pond"),
+      new Project("Channel C")
+      ]
+    ),
+    new District(
+    "HC MUD 433", 
+    "assets/img/DistrictMaps/mud-433-map.jpg",
+    [
+      new Project("IDC 1"),
+      new Project("IDC 2"),
+      new Project("IDC 3"),
+      new Project("IDC 4"),
+      new Project("IDC 5"),
+      new Project("Drainage Channel Phase II")
+      ]
+    ),
+    new District(
+    "HC MUD 106", 
+    "assets/img/DistrictMaps/mud-106-map.jpg",
+    [
+      new Project("Commerical Mix Pond"),
+      new Project("Eagle Springs North Channel")
+      ]
+    ),
+    new District(
+    "HC MUD 290", 
+    "assets/img/DistrictMaps/mud-290-map.jpg",
+    [
+      new Project("Eagle Springs"),
+      new Project("Eagle Springs Detention Pond"),
+      new Project("Williams Gully")
+      ]
+    ),
+    new District(
+    "HC MUD 238", 
+    "assets/img/DistrictMaps/mud-238-map.jpg",
+    [
+      new Project("Oakridge Detention Pond"),
+      new Project("Barker's Crossing Pond"),
+      new Project("Lake Ridge Pond"),
+      new Project("Facilities"),
+      new Project("Harris County Channels")
+      ]
+    ),
+    new District(
+    "HC MUD 157", 
+    "assets/img/DistrictMaps/mud-157-map.jpg",
+    [
+      new Project("FM 529 Retail center Detention Pond"),
+      ]
+    ),
+    new District(
+    "HC MUD 285", 
+    "assets/img/DistrictMaps/mud-285-map.jpg",
+    [
+      new Project("New Forest Channel"),
+      new Project("Carpenter's Landing"),
+      new Project("Liberty Lakes"),
+      new Project("New Forest Pond")
+      ]
+    )
     ];

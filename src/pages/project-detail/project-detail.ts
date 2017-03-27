@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-
+import { Project } from '../../models/project'
 
 import { Camera } from 'ionic-native';
 
@@ -14,7 +14,7 @@ import { Camera } from 'ionic-native';
 export class ProjectDetailPage {
   @ViewChild('fileInput') fileInput;
 
-  selectedProject: string;
+  selectedProject: Project;
 
   form: FormGroup;
 
@@ -26,11 +26,11 @@ export class ProjectDetailPage {
     this.selectedProject = navParams.get('project');
 
     this.form = formBuilder.group({
+      name: [this.selectedProject.name ],
       bullet1: ['', Validators.required],
       bullet2: [''],
       bullet3: [''],
       photo1: [''],
-      photo2: ['']
     });
 
     // Watch the form for changes, and
