@@ -6,8 +6,12 @@ import { DistrictMasterPage } from '../pages/district-master/district-master';
 import { DistrictDetailPage } from '../pages/district-detail/district-detail';
 import { ProjectDetailPage } from '../pages/project-detail/project-detail';
 import { ItemCreatePage } from '../pages/item-create/item-create';
+import { ViewPdf } from '../pages/view-pdf/view-pdf';
+
+import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
 import { DistrictService }  from '../providers/district.service';
+import { ReportService }  from '../providers/report-service';
 
 
 @NgModule({
@@ -16,7 +20,9 @@ import { DistrictService }  from '../providers/district.service';
     DistrictMasterPage,
     DistrictDetailPage,
     ProjectDetailPage,
-    ItemCreatePage
+    ItemCreatePage,
+    ViewPdf,
+    PdfViewerComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -27,8 +33,9 @@ import { DistrictService }  from '../providers/district.service';
     DistrictMasterPage,
     DistrictDetailPage,
     ProjectDetailPage,
-    ItemCreatePage
+    ItemCreatePage,
+    ViewPdf
   ],
-  providers: [ DistrictService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [ DistrictService, ReportService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

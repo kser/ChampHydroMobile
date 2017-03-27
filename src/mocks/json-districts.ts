@@ -1,6 +1,3 @@
-import { District } from '../models/district';
-import { Project } from '../models/project';
-
 export const DISTRICTS:any[] = [
   { 
     name: "HC MUD 468", 

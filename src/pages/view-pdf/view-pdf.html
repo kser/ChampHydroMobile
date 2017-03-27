@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Report Preview</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="close()">
+        <span ion-text color="primary" showWhen="ios">
+          Close
+        </span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding text-center>
+  <pdf-viewer [src]="pdfUrl" 
+              [page]="page" 
+              [original-size]="false" 
+              style="display: block;"></pdf-viewer>
+
+              <!--<button (click)="emailPdf()" type="button" ion-button block>Email PDF</button>-->
+
+</ion-content>
+
+<ion-footer>
+  <!--<button (click)="emailPdf()" type="button" ion-button block>Email PDF</button>-->
+</ion-footer>

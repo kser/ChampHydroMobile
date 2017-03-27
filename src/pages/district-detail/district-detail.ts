@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { DistrictService }  from '../../providers/district.service';
+import { ReportService }  from '../../providers/report-service';
 
 import { District } from '../../models/district';
 import { Project } from '../../models/project';
 
 import { ProjectDetailPage }  from '../project-detail/project-detail';
 import { ItemCreatePage }  from '../item-create/item-create';
+import { ViewPdf }  from '../view-pdf/view-pdf';
 
 /*
   Generated class for the DistrictDetail page.
@@ -24,7 +26,7 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public districtService: DistrictService) {
+  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
   }
 
@@ -63,6 +65,16 @@ export class DistrictDetailPage {
 
   buildReport() {
     console.log(this.selectedDistrict);
+
+    this.reportService.createPdf(this.selectedDistrict)
+      .then((pdf) => {
+        let blob = new Blob([pdf], { type: 'application/pdf' });
+        let pdfUrl = { pdfUrl: URL.createObjectURL(blob) };
+        let modal = this.modalCtrl.create(ViewPdf, pdfUrl);
+
+        // Display the modal view
+        modal.present();
+      });
   }
 
   ionViewDidLoad() {
