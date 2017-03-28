@@ -31,6 +31,7 @@ export class ProjectDetailPage {
       bullet2: [''],
       bullet3: [''],
       photo1: [''],
+      photo2: ['']
     });
 
     // Watch the form for changes, and
@@ -75,6 +76,7 @@ export class ProjectDetailPage {
       var imageData = (readerEvent.target as any).result;
 
       this.form.patchValue({ 'photo1': imageData });
+      this.form.patchValue({ 'photo2': imageData });
 
     };
 

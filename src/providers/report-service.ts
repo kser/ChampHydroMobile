@@ -43,8 +43,8 @@ export class ReportService {
 
         var dd = {
             content: [
-                { image: this.reportData.Logo, alignment: 'center', width:300, margin: [0, 0, 0, 20] },
-                '',
+                { image: this.reportData.Logo, alignment: 'center', width:300 },
+                { text: 'Erosion Control Specialist since 1976', style: 'subheader',  margin: [0, 0, 0, 20] },
                 { text: district.name, style: 'header' },
                 '',
                 { text: this.reportData.Date, alignment: 'center', style: 'header' },
@@ -60,14 +60,13 @@ export class ReportService {
                 { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                 { ul: [
                     district.projects[0].bullet1,
-                    'Item 2',
-                    'Item 3'
+                    district.projects[0].bullet2,
+                    district.projects[0].bullet3
                     ],
                     pageBreak: 'after'
                 },
-                { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
-                '2 Photos here!'
-                
+                { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
+                { image: district.projects[0].photo1, alignment: 'center', width: 500,  },                
                 
             ],
             styles: {
