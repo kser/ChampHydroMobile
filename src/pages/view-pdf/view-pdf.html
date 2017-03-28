@@ -16,12 +16,13 @@
   <pdf-viewer [src]="pdfUrl" 
               [page]="page" 
               [original-size]="false" 
-              style="display: block;"></pdf-viewer>
+              style="display: block;"
+              [show-all]="true"></pdf-viewer>
 
               <!--<button (click)="emailPdf()" type="button" ion-button block>Email PDF</button>-->
 
 </ion-content>
 
 <ion-footer>
-  <!--<button (click)="emailPdf()" type="button" ion-button block>Email PDF</button>-->
+  <button (click)="emailPdf()" type="button" ion-button block>Email PDF</button>
 </ion-footer>

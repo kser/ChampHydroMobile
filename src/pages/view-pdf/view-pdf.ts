@@ -29,6 +29,7 @@ export class ViewPdf {
     SocialSharing.canShareViaEmail().then(() => {
       // Sharing via email is possible
     }).catch(() => {
+      console.log("can't share via email")
       // Sharing via email is not possible
     });
 

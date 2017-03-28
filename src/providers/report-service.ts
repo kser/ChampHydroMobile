@@ -43,35 +43,44 @@ export class ReportService {
 
         var dd = {
             content: [
-                { image: this.reportData.Logo, alignment: 'center', width:300 },
+                { image: this.reportData.Logo, alignment: 'center', width:300, margin: [0, 0, 0, 20] },
                 '',
                 { text: district.name, style: 'header' },
                 '',
                 { text: this.reportData.Date, alignment: 'center', style: 'header' },
-                { image: this.reportData.Map, alignment: 'center', width: 300 },
-                { text: this.reportData.Address },
+                { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                { text: this.reportData.Address, style: 'subheader' },
                 '',
-                { text: "Cell:" +  this.reportData.Cell + " ~ Office: " + this.reportData.Office + " ~ Fax: " + this.reportData.Fax },
-                { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after' },
+                { text: "Cell:" +  this.reportData.Cell + " ~ Office: " + this.reportData.Office + " ~ Fax: " + this.reportData.Fax, style: 'subheader' },
+                { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after', style: 'subheader' },
+                
+
+                //projects 
+                { text: district.projects[0].name, style: 'header' },
+                { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                 { ul: [
                     district.projects[0].bullet1,
                     'Item 2',
                     'Item 3'
-                    ]
-                }
-
+                    ],
+                    pageBreak: 'after'
+                },
+                { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                '2 Photos here!'
+                
                 
             ],
             styles: {
                 header: {
                     fontSize: 20,
                     bold: true,
-                    alignment: 'center'
+                    alignment: 'center',
+                    margin: [0, 0, 0, 20]
                 },
                 subheader: {
                     fontSize: 16,
                     bold: true,
-                    margin: [0, 20, 0, 5]
+                    alignment: 'center',
                 },
             },
         }
