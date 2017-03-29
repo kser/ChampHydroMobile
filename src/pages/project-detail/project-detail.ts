@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, ActionSheetController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { Project } from '../../models/project'
@@ -22,7 +22,7 @@ export class ProjectDetailPage {
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public viewCtrl: ViewController, formBuilder: FormBuilder) {
     this.selectedProject = navParams.get('project');
 
     this.form = formBuilder.group({
@@ -44,9 +44,35 @@ export class ProjectDetailPage {
     console.log('ionViewDidLoad ProjectDetailPage');
   }
 
-  getPicture() {
+  //PICTURE SELECTION
+  presentActionSheet() {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: 'Select Image Source',
+      buttons: [
+        {
+          text: 'Load from Library',
+          handler: () => {
+            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY);
+          }
+        },
+        {
+          text: 'Use Camera',
+          handler: () => {
+            this.takePicture(Camera.PictureSourceType.CAMERA);
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+  takePicture(sourceType) {
     let cameraOptions = {
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+      sourceType: sourceType,
       destinationType: Camera.DestinationType.DATA_URL,      
       // quality: 75,
       targetWidth: 300,

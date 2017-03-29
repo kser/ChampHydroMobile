@@ -49,7 +49,7 @@
 
   <h2>Photos</h2>
      <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"/> 
-    <div class="profile-image-wrapper" (click)="getPicture()">
+    <div class="profile-image-wrapper" (click)="presentActionSheet()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo1.value">
         <ion-icon name="add"></ion-icon>
         <div>
