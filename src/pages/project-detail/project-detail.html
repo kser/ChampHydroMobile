@@ -48,8 +48,16 @@
     </ion-list>
 
   <h2>Photos</h2>
-     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)"/> 
-    <div class="profile-image-wrapper" (click)="presentActionSheet()">
+     <div text-center>
+       <ion-thumbnail *ngIf="this.form.controls.photo1.value">
+          <img [src]=this.form.controls.photo1.value />
+       </ion-thumbnail>
+       <ion-icon name="images" on-tap="presentActionSheet()"></ion-icon>
+       <p>Upload Photo</p>
+     </div>
+
+
+    <!--<div class="profile-image-wrapper" (click)="presentActionSheet()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.photo1.value">
         <ion-icon name="add"></ion-icon>
         <div>
@@ -57,7 +65,7 @@
         </div>
       </div>
       <div class="profile-image" [style.backgroundImage]="getPhotoImageStyle()" *ngIf="this.form.controls.photo1.value"></div>
-    </div>
+    </div>-->
   </form>
 
 </ion-content>

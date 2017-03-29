@@ -74,45 +74,28 @@ export class ProjectDetailPage {
     let cameraOptions = {
       sourceType: sourceType,
       destinationType: Camera.DestinationType.DATA_URL,      
-      // quality: 75,
       targetWidth: 300,
-      // targetHeight: 300,
-      encodingType: Camera.EncodingType.JPEG,      
-      correctOrientation: true
+      targetHeight: 300,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
     }
     if (Camera['installed']()) {
       Camera.getPicture(cameraOptions)
       .then((data) => {
         this.form.patchValue({ 'photo1': 'data:image/jpg;base64,' +  data });
       }, (err) => {
-        alert('Unable to load map');
+        alert('Unable to load photo');
       })
     } else {
-      this.fileInput.nativeElement.click();
+        alert('Camera not available');
     }
   }
 
-  processWebImage(event) {
-    let input = this.fileInput.nativeElement;
 
-    var reader = new FileReader();
-    reader.onload = (readerEvent) => {
-      input.parentNode.removeChild(input);
 
-      var imageData = (readerEvent.target as any).result;
-
-      this.form.patchValue({ 'photo1': imageData });
-      // this.form.patchValue({ 'photo2': imageData });
-
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
-  }
-
-  getPhotoImageStyle() {
-    return 'url(' + this.form.controls['photo1'].value + ')'
-  }
-
+  
+  
+  //MODAL ACTIONS
   /**
    * The user cancelled, so we dismiss without sending data back.
    */
