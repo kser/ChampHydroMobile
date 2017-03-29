@@ -48,21 +48,25 @@
     </ion-list>
 
   <h2>Photos</h2>
-     <div text-center>
-       <ion-thumbnail *ngIf="this.form.controls.photo1.value">
-          <img [src]=this.form.controls.photo1.value />
-       </ion-thumbnail>
-       <ion-icon name="images" on-tap="presentActionSheet(1)"></ion-icon>
-       <p>Upload Photo</p>
-     </div>
+  <!-- Photo1 -->
+     <ion-list>
+       <ion-item>
+         <ion-thumbnail item-right *ngIf="this.form.controls.photo1.value">
+            <img [src]=this.form.controls.photo1.value />
+         </ion-thumbnail>
+         <p>Upload Photo 1</p>
+         <ion-icon item-left name="images" on-tap="presentActionSheet(1)"></ion-icon>
+       </ion-item>
 
-     <div text-center>
-       <ion-thumbnail *ngIf="this.form.controls.photo2.value">
-          <img [src]=this.form.controls.photo2.value />
-       </ion-thumbnail>
-       <ion-icon name="images" on-tap="presentActionSheet(2)"></ion-icon>
-       <p>Upload Photo</p>
-     </div>
+  <!-- Photo2 -->
+       <ion-item>
+         <ion-thumbnail item-right *ngIf="this.form.controls.photo2.value">
+            <img [src]=this.form.controls.photo2.value />
+         </ion-thumbnail>
+         <p *ngIf="!this.form.controls.photo2.value">Upload Photo 2</p>
+         <ion-icon item-left name="images" on-tap="presentActionSheet(2)"></ion-icon>
+       </ion-item>
+     </ion-list> 
 
 
     <!--<div class="profile-image-wrapper" (click)="presentActionSheet()">
