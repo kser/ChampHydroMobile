@@ -24,14 +24,23 @@ export class ReportService {
             var dd = this.createDocumentDefinition(report);
             var pdf = pdfMake.createPdf(dd);
 
-            pdf.getBase64((output) => {
-                var raw = atob(output);
-                var uint8Array = new Uint8Array(raw.length);
-                for (var i = 0; i < raw.length; i++) {
-                    uint8Array[i] = raw.charCodeAt(i);
-                }
-                resolve(uint8Array);
+            // pdf.getBase64((data) => {
+            //     console.log("BASE64: " + data);
+            // });
+
+            pdf.getDataUrl((data) => {
+                // console.log("URL: " + data);
+                resolve(data);
             });
+
+            // pdf.getBase64((output) => {
+            //     var raw = atob(output);
+            //     var uint8Array = new Uint8Array(raw.length);
+            //     for (var i = 0; i < raw.length; i++) {
+            //         uint8Array[i] = raw.charCodeAt(i);
+            //     }
+            //     resolve(uint8Array);
+            // });
         });
     }
 
@@ -55,7 +64,7 @@ export class ReportService {
                 { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after', style: 'subheader' },
                 
 
-                //projects 
+            //     //projects 
                 { text: district.projects[0].name, style: 'header' },
                 { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                 { ul: [

@@ -48,9 +48,9 @@ export class ProjectDetailPage {
     let cameraOptions = {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.DATA_URL,      
-      quality: 75,
-      targetWidth: 96,
-      targetHeight: 96,
+      // quality: 75,
+      targetWidth: 300,
+      // targetHeight: 300,
       encodingType: Camera.EncodingType.JPEG,      
       correctOrientation: true
     }
@@ -76,7 +76,7 @@ export class ProjectDetailPage {
       var imageData = (readerEvent.target as any).result;
 
       this.form.patchValue({ 'photo1': imageData });
-      this.form.patchValue({ 'photo2': imageData });
+      // this.form.patchValue({ 'photo2': imageData });
 
     };
 
@@ -101,7 +101,7 @@ export class ProjectDetailPage {
   save() {
     if(!this.form.valid) { return; }
     this.viewCtrl.dismiss(this.form.value);
-    console.log(this.form.value);
+    // console.log(this.form.value);
   }
 
   }

@@ -64,13 +64,15 @@ export class DistrictDetailPage {
   }
 
   buildReport() {
-    console.log(this.selectedDistrict);
+    //console.log(this.selectedDistrict);
 
     this.reportService.createPdf(this.selectedDistrict)
       .then((pdf) => {
-        let blob = new Blob([pdf], { type: 'application/pdf' });
-        let pdfUrl = { pdfUrl: URL.createObjectURL(blob) };
+        // let blob = new Blob([pdf], { type: 'application/pdf' });
+        let pdfUrl = { pdfUrl: pdf };  //URL.createObjectURL(blob) };
         let modal = this.modalCtrl.create(ViewPdf, pdfUrl);
+
+        // console.log(pdfUrl);
 
         // Display the modal view
         modal.present();
@@ -78,7 +80,7 @@ export class DistrictDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log(this.selectedDistrict);
+    //console.log(this.selectedDistrict);
   }
 
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { ViewController, NavParams } from "ionic-angular";
+import { ViewController, NavParams, Platform} from "ionic-angular";
 
-import { SocialSharing } from 'ionic-native';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'view-pdf',
@@ -13,33 +13,51 @@ export class ViewPdf {
 
   pdfUrl: string;
 
+  public sendTo   : any;
+   public subject  : string = 'First Champions Report Email!';
+   public message  : string = 'We finally did it! PDF attached';
+   public image    : string  = 'http://masteringionic2.com/perch/resources/mastering-ionic-2-cover-1-w320.png';
+   public uri      : string  = 'http://masteringionic2.com/products/product-detail/s/mastering-ionic-2-e-book';
+
+
   constructor(private viewCtrl: ViewController,
-              private navParams: NavParams) { }
+              private navParams: NavParams,
+              public platform   : Platform,
+              private socialSharing: SocialSharing) { }
 
   ionViewDidLoad() {
     this.pdfUrl = this.navParams.get('pdfUrl');
+    // console.log(this.pdfUrl);
   }
 
   close(remove = false) {
     this.viewCtrl.dismiss(remove);
   }
 
-  emailPdf() {
-    // Check if sharing via email is supported
-    SocialSharing.canShareViaEmail().then(() => {
-      // Sharing via email is possible
-    }).catch(() => {
-      console.log("can't share via email")
-      // Sharing via email is not possible
-    });
-
-    // Share via email
-    SocialSharing.shareViaEmail('Hello', 'Test share pdf', ['kyle.serres@hpe.com'], ['assets/img/DistrictMaps/mud-468-map.jpg']).then(() => {
-      // Success!
-    }).catch(() => {
-      // Error!
-      console.log("Error sharing via email")
-    });
-  }
+  emailPdf()
+   {
+     console.log(this.pdfUrl);
+      this.platform.ready()
+      .then(() =>
+      {
+         this.socialSharing.canShareViaEmail()
+         .then(() =>
+         {
+            this.socialSharing.shareViaEmail(this.message, this.subject, this.sendTo, null, null, this.pdfUrl)
+            .then((data) =>
+            {
+               console.log('Shared via Email');
+            })
+            .catch((err) =>
+            {
+               console.log('Not able to be shared via Email');
+            });
+         })
+         .catch((err) =>
+         {
+            console.log('Sharing via Email NOT enabled');
+         });
+      });
+   }
 
 }

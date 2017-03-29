@@ -24,7 +24,6 @@ export class District {
       let index = -1;
 
       for(let i=0; i<this.projects.length; i++){
-        console.log(this.projects[i].name, project.name);
         if(this.projects[i].name === project.name) {
           index = i;
           break;
@@ -39,7 +38,7 @@ export class District {
         this.projects[index].setBullet2(project.bullet2);
         this.projects[index].setBullet3(project.bullet3);
         this.projects[index].photo1 = project.photo1;
-        this.projects[index].photo1 = project.photo2;
+        this.projects[index].photo2 = project.photo2;
       }
       else {
         console.log("No Project Found");
