@@ -75,7 +75,7 @@ export class ReportService {
                     pageBreak: 'after'
                 },
                 { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
-                { image: district.projects[0].photo1, alignment: 'center', width: 500,  },          
+                { image: district.projects[0].photo2, alignment: 'center', width: 500,  },          
             ],
             footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
             styles: {

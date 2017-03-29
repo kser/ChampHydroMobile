@@ -52,7 +52,15 @@
        <ion-thumbnail *ngIf="this.form.controls.photo1.value">
           <img [src]=this.form.controls.photo1.value />
        </ion-thumbnail>
-       <ion-icon name="images" on-tap="presentActionSheet()"></ion-icon>
+       <ion-icon name="images" on-tap="presentActionSheet(1)"></ion-icon>
+       <p>Upload Photo</p>
+     </div>
+
+     <div text-center>
+       <ion-thumbnail *ngIf="this.form.controls.photo2.value">
+          <img [src]=this.form.controls.photo2.value />
+       </ion-thumbnail>
+       <ion-icon name="images" on-tap="presentActionSheet(2)"></ion-icon>
        <p>Upload Photo</p>
      </div>
 

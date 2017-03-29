@@ -45,20 +45,20 @@ export class ProjectDetailPage {
   }
 
   //PICTURE SELECTION
-  presentActionSheet() {
+  presentActionSheet(photoNum) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY);
+            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY, photoNum);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(Camera.PictureSourceType.CAMERA);
+            this.takePicture(Camera.PictureSourceType.CAMERA, photoNum);
           }
         },
         {
@@ -70,19 +70,23 @@ export class ProjectDetailPage {
     actionSheet.present();
   }
 
-  takePicture(sourceType) {
+  takePicture(sourceType, photoNum) {
     let cameraOptions = {
       sourceType: sourceType,
       destinationType: Camera.DestinationType.DATA_URL,      
       targetWidth: 300,
       targetHeight: 300,
       correctOrientation: true,
-      saveToPhotoAlbum: true
+      // saveToPhotoAlbum: true
     }
     if (Camera['installed']()) {
       Camera.getPicture(cameraOptions)
       .then((data) => {
-        this.form.patchValue({ 'photo1': 'data:image/jpg;base64,' +  data });
+        if(photoNum === 1)
+          this.form.patchValue({ 'photo1': 'data:image/jpg;base64,' +  data });
+        else
+          this.form.patchValue({ 'photo2': 'data:image/jpg;base64,' +  data });
+
       }, (err) => {
         alert('Unable to load photo');
       })
