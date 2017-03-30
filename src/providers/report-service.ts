@@ -68,6 +68,8 @@ export class ReportService {
                 { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after', style: 'subheader' },
                 );
 
+            
+            //PROJECTS - loop through all projects 
             for(let i=0; i<district.projects.length; i++){
                 projContent.push( 
                     { text: district.projects[i].name, style: 'header'},
@@ -78,11 +80,19 @@ export class ReportService {
                         district.projects[i].bullet3
                     ],
                         pageBreak: 'after'
-                    },
-                    { image: district.projects[i].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
-                    { image: district.projects[i].photo2, alignment: 'center', width: 500,  }, 
+                    });
 
-                    );
+                if(district.projects[i].photo1) {
+                    projContent.push({ image: district.projects[i].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                }
+
+                if(district.projects[i].photo2) {
+                    projContent.push({ image: district.projects[i].photo2, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                }
+                //page break after photos unless last project, because we don't need a blank page at end
+                if(i !== district.projects.length-1) {
+                    projContent.push({ pageBreak: 'after' });
+                }
             }
 
             console.log(projContent);
