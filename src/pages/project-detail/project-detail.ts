@@ -52,13 +52,13 @@ export class ProjectDetailPage {
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY, photoNum);
+            this.takePicture(Camera.PictureSourceType.PHOTOLIBRARY, false, photoNum);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(Camera.PictureSourceType.CAMERA, photoNum);
+            this.takePicture(Camera.PictureSourceType.CAMERA, true, photoNum);
           }
         },
         {
@@ -70,10 +70,11 @@ export class ProjectDetailPage {
     actionSheet.present();
   }
 
-  takePicture(sourceType, photoNum) {
+  takePicture(sourceType, saveToAlbum, photoNum) {
     let cameraOptions = {
       sourceType: sourceType,
-      destinationType: Camera.DestinationType.DATA_URL,      
+      destinationType: Camera.DestinationType.DATA_URL,
+      saveToPhotoAlbum: saveToAlbum,     
       targetWidth: 300,
       targetHeight: 300,
       correctOrientation: true,
