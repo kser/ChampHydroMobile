@@ -44,39 +44,71 @@ export class ReportService {
         });
     }
 
+
     private createDocumentDefinition(district) {
 
         // var items = report.Items.map((item) => {
         //     return [item.Description, item.Quantity, item.Price];
         // });
 
-        var dd = {
-            content: [
+        var getContent = () => {
+            let projContent = [];
+
+            //Title Page
+            projContent.push(
                 { image: this.reportData.Logo, alignment: 'center', width:300 },
                 { text: 'Erosion Control Specialist since 1976', style: 'subheader',  margin: [0, 0, 0, 20] },
                 { text: district.name, style: 'header' },
-                '',
+
                 { text: this.reportData.Date, alignment: 'center', style: 'header' },
                 { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                 { text: this.reportData.Address, style: 'subheader' },
-                '',
+
                 { text: "Cell:" +  this.reportData.Cell + " ~ Office: " + this.reportData.Office + " ~ Fax: " + this.reportData.Fax, style: 'subheader' },
                 { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after', style: 'subheader' },
+                );
+
+            for(let i=0; i<district.projects.length; i++){
+                projContent.push( 
+                    { text: district.projects[i].name, style: 'header'},
+                    { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                    { ul: [
+                        district.projects[i].bullet1,
+                        district.projects[i].bullet2,
+                        district.projects[i].bullet3
+                    ],
+                        pageBreak: 'after'
+                    },
+                    { image: district.projects[i].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
+                    { image: district.projects[i].photo2, alignment: 'center', width: 500,  }, 
+
+                    );
+            }
+
+            console.log(projContent);
+
+            return projContent;
+        };
+
+        var dd = {
+            content: getContent(),
                 
 
             //     //projects 
-                { text: district.projects[0].name, style: 'header' },
-                { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
-                { ul: [
-                    district.projects[0].bullet1,
-                    district.projects[0].bullet2,
-                    district.projects[0].bullet3
-                    ],
-                    pageBreak: 'after'
-                },
-                { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
-                { image: district.projects[0].photo2, alignment: 'center', width: 500,  },          
-            ],
+                // { text: district.projects[0].name, style: 'header' },
+                // { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                // { ul: [
+                //     district.projects[0].bullet1,
+                //     district.projects[0].bullet2,
+                //     district.projects[0].bullet3
+                //     ],
+                //     pageBreak: 'after'
+                // },
+                // { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
+                // { image: district.projects[0].photo2, alignment: 'center', width: 500,  }, 
+
+
+            // ],
             footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
             styles: {
                 header: {

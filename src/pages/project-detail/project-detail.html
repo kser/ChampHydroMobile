@@ -60,7 +60,7 @@
 
   <!-- Photo2 -->
        <ion-item>
-         <ion-thumbnail item-right *ngIf="this.form.controls.photo2.value">
+         <ion-thumbnail *ngIf="this.form.controls.photo2.value">
             <img [src]=this.form.controls.photo2.value />
          </ion-thumbnail>
          <p *ngIf="!this.form.controls.photo2.value">Upload Photo 2</p>
