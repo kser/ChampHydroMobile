@@ -24,32 +24,16 @@ export class ReportService {
             var dd = this.createDocumentDefinition(report);
             var pdf = pdfMake.createPdf(dd);
 
-            // pdf.getBase64((data) => {
-            //     console.log("BASE64: " + data);
-            // });
-
             pdf.getDataUrl((data) => {
-                // console.log("URL: " + data);
                 resolve(data);
             });
 
-            // pdf.getBase64((output) => {
-            //     var raw = atob(output);
-            //     var uint8Array = new Uint8Array(raw.length);
-            //     for (var i = 0; i < raw.length; i++) {
-            //         uint8Array[i] = raw.charCodeAt(i);
-            //     }
-            //     resolve(uint8Array);
-            // });
         });
     }
 
 
     private createDocumentDefinition(district) {
 
-        // var items = report.Items.map((item) => {
-        //     return [item.Description, item.Quantity, item.Price];
-        // });
 
         var getContent = () => {
             let projContent = [];
@@ -65,14 +49,14 @@ export class ReportService {
                 { text: this.reportData.Address, style: 'subheader' },
 
                 { text: "Cell:" +  this.reportData.Cell + " ~ Office: " + this.reportData.Office + " ~ Fax: " + this.reportData.Fax, style: 'subheader' },
-                { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, pageBreak: 'after', style: 'subheader' },
+                { text: "Account Representattive: " + this.reportData.Rep + " ~ Email: " + this.reportData.Email, style: 'subheader' },
                 );
 
             
             //PROJECTS - loop through all projects 
             for(let i=0; i<district.projects.length; i++){
                 projContent.push( 
-                    { text: district.projects[i].name, style: 'header'},
+                    { text: district.projects[i].name, style: 'header', pageBreak: 'before'},
                     { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                     { ul: [
                         district.projects[i].bullet1,
@@ -89,36 +73,13 @@ export class ReportService {
                 if(district.projects[i].photo2) {
                     projContent.push({ image: district.projects[i].photo2, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
                 }
-                //page break after photos unless last project, because we don't need a blank page at end
-                if(i !== district.projects.length-1) {
-                    projContent.push({ pageBreak: 'after' });
-                }
             }
-
-            console.log(projContent);
 
             return projContent;
         };
 
         var dd = {
             content: getContent(),
-                
-
-            //     //projects 
-                // { text: district.projects[0].name, style: 'header' },
-                // { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
-                // { ul: [
-                //     district.projects[0].bullet1,
-                //     district.projects[0].bullet2,
-                //     district.projects[0].bullet3
-                //     ],
-                //     pageBreak: 'after'
-                // },
-                // { image: district.projects[0].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] },
-                // { image: district.projects[0].photo2, alignment: 'center', width: 500,  }, 
-
-
-            // ],
             footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
             styles: {
                 header: {
@@ -129,7 +90,6 @@ export class ReportService {
                 },
                 subheader: {
                     fontSize: 16,
-                    bold: true,
                     alignment: 'center',
                 },
             },
