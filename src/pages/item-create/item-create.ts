@@ -46,25 +46,6 @@ export class ItemCreatePage {
     console.log(model);
   }
   
-  // initProject() {
-  //       // initialize our address
-  //       return this.formBuilder.group({
-  //           name: [''],
-  //           map: ['']
-  //       });
-  //   }
-
-  // addProject() {
-  //     // add address to the list
-  //     const control = <FormArray>this.form.controls['projects'];
-  //     control.push(this.initProject());
-  // }
-
-  // removeProject(i: number) {
-  //     // remove address from the list
-  //     const control = <FormArray>this.form.controls['projects'];
-  //     control.removeAt(i);
-  // }
 
   getMap() {
     let cameraOptions = {

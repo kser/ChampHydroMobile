@@ -45,7 +45,7 @@ export class ReportService {
                 { text: district.name, style: 'header' },
 
                 { text: this.reportData.Date, alignment: 'center', style: 'header' },
-                { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                { image: district.map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                 { text: this.reportData.Address, style: 'subheader' },
 
                 { text: "Cell:" +  this.reportData.Cell + " ~ Office: " + this.reportData.Office + " ~ Fax: " + this.reportData.Fax, style: 'subheader' },
@@ -57,7 +57,7 @@ export class ReportService {
             for(let i=0; i<district.projects.length; i++){
                 projContent.push( 
                     { text: district.projects[i].name, style: 'header', pageBreak: 'before'},
-                    { image: this.reportData.Map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
+                    { image: district.projects[i].map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] },
                     { ul: [
                         district.projects[i].bullet1,
                         district.projects[i].bullet2,
