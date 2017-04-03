@@ -14,10 +14,8 @@ export class ViewPdf {
   pdfUrl: string;
 
   public sendTo   : any;
-   public subject  : string = 'First Champions Report Email!';
-   public message  : string = 'We finally did it! PDF attached';
-   public image    : string  = 'http://masteringionic2.com/perch/resources/mastering-ionic-2-cover-1-w320.png';
-   public uri      : string  = 'http://masteringionic2.com/products/product-detail/s/mastering-ionic-2-e-book';
+   public subject  : string = 'Champions Report';
+   public message  : string = 'Champions Recon Report attached';
 
 
   constructor(private viewCtrl: ViewController,
