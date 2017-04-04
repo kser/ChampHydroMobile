@@ -27,11 +27,11 @@ export class ProjectDetailPage {
 
     this.form = formBuilder.group({
       name: [this.selectedProject.name ],
-      bullet1: ['', Validators.required],
-      bullet2: [''],
-      bullet3: [''],
-      photo1: [''],
-      photo2: ['']
+      bullet1: [this.selectedProject.bullet1, Validators.required],
+      bullet2: [this.selectedProject.bullet2],
+      bullet3: [this.selectedProject.bullet3],
+      photo1: [this.selectedProject.photo1],
+      photo2: [this.selectedProject.photo2]
     });
 
     // Watch the form for changes, and
