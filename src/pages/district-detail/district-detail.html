@@ -26,7 +26,7 @@
           <img [src]="project.map" />
         </ion-thumbnail>
         <h2>{{project.name}}</h2>
-        <p>Last recon on 4/12/17</p>
+        <p>Updated: {{project.lastUpdate | date:'short'}}</p>
         <!--<ion-note item-right *ngIf="district.id">{{district.id}}</ion-note>-->
       </button>
 

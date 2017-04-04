@@ -39,6 +39,7 @@ export class District {
         this.projects[index].setBullet3(project.bullet3);
         this.projects[index].photo1 = project.photo1;
         this.projects[index].photo2 = project.photo2;
+        this.projects[index].updateDate();
       }
       else {
         console.log("No Project Found");

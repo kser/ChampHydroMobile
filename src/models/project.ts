@@ -7,7 +7,8 @@ export class Project {
         public bullet2: string = "", 
         public bullet3: string = "", 
         public photo1: string = "",     //Todo: change to array of strings
-        public photo2: string = "") { }
+        public photo2: string = "",
+        public lastUpdate: Date = new Date()) {}
 
     setBullet1(newBullet1) {
         this.bullet1 = newBullet1;
@@ -19,6 +20,10 @@ export class Project {
 
     setBullet3(newBullet3) {
         this.bullet3 = newBullet3;
+    }
+
+    updateDate() {
+        this.lastUpdate = new Date();
     }
 
 }
