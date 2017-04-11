@@ -37,8 +37,7 @@ export class District {
         this.projects[index].setBullet1(project.bullet1);
         this.projects[index].setBullet2(project.bullet2);
         this.projects[index].setBullet3(project.bullet3);
-        this.projects[index].photo1 = project.photo1;
-        this.projects[index].photo2 = project.photo2;
+        this.projects[index].photos = project.photos;
         this.projects[index].updateDate();
       }
       else {

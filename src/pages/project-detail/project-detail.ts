@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, ViewController, ActionSheetController } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 import { Project } from '../../models/project'
 
@@ -16,13 +16,13 @@ export class ProjectDetailPage {
 
   selectedProject: Project;
 
-  form: FormGroup;
+  public form: FormGroup;
 
   isReadyToSave: boolean;
 
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public viewCtrl: ViewController, formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController, public viewCtrl: ViewController, private formBuilder: FormBuilder) {
     this.selectedProject = navParams.get('project');
 
     this.form = formBuilder.group({
@@ -30,8 +30,9 @@ export class ProjectDetailPage {
       bullet1: [this.selectedProject.bullet1, Validators.required],
       bullet2: [this.selectedProject.bullet2],
       bullet3: [this.selectedProject.bullet3],
-      photo1: [this.selectedProject.photo1],
-      photo2: [this.selectedProject.photo2]
+      photos: formBuilder.array([
+        this.initPhoto()
+      ])
     });
 
     // Watch the form for changes, and
@@ -42,6 +43,25 @@ export class ProjectDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProjectDetailPage');
+  }
+
+  initPhoto() {
+      // initialize our photo
+      return this.formBuilder.group({
+          photo: ['']
+      });
+  }
+
+  addPhoto() {
+    // add photo to the list
+    const control = <FormArray>this.form.controls['photos'];
+    control.push(this.initPhoto());
+  }
+
+  removePhoto(i: number) {
+      // remove photo from the list
+      const control = <FormArray>this.form.controls['photos'];
+      control.removeAt(i);
   }
 
   //PICTURE SELECTION

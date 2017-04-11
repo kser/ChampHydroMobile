@@ -6,8 +6,7 @@ export class Project {
         public bullet1: string = "",    //Todo: change to array of strings
         public bullet2: string = "", 
         public bullet3: string = "", 
-        public photo1: string = "",     //Todo: change to array of strings
-        public photo2: string = "",
+        public photos: string[] = [],
         public lastUpdate: Date = new Date()) {}
 
     setBullet1(newBullet1) {
