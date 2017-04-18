@@ -31,7 +31,7 @@
 
 <ion-content padding>
   <h2>Comments</h2>
-    <form *ngIf="form" [formGroup]="form" (ngSubmit)="saveProject()">
+    <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="saveProject()">
       <ion-list>
       <ion-item>
         <ion-label floating>Bullet #1</ion-label>
@@ -50,11 +50,12 @@
   <h2>Photos</h2>
   <!-- Photos array -->
      <ion-list formArrayName="photos">
-       <ion-item *ngFor="let photo of form.controls.photos.controls; let i=index" [formGroupName]="i">
-         <ion-thumbnail item-right *ngIf="this.form.controls.photos.controls[i].value">
-            <img [src]=this.form.controls.photos.controls[i].value />
+       <ion-item *ngFor="let photo of photos.controls; let i=index" [formGroupName]="i">
+         <!--<p>Photo {{i}}: {{this.projectForm.controls.photos.controls[i].value.photo}}</p>-->
+         <ion-thumbnail item-right *ngIf="this.projectForm.controls.photos.controls[i].value.photo">
+            <img [src]=this.projectForm.controls.photos.controls[i].value.photo />
          </ion-thumbnail>
-         <p *ngIf="!this.form.controls.photos.controls[i].value">Upload Photo {{i + 1}}</p>
+         <p *ngIf="!this.projectForm.controls.photos.controls[i].value.photo">Upload Photo {{i + 1}}</p>
          <ion-icon item-left name="images" on-tap="presentActionSheet(i)"></ion-icon>
        </ion-item>
 
@@ -63,5 +64,7 @@
      <button ion-button small outline (click)="addPhoto()" type="button">Add a another photo</button>
 
   </form>
+
+  <!--<p>projectForm value: {{projectForm.value | json}}</p>-->
 
 </ion-content>
