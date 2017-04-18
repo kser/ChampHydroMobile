@@ -14,8 +14,8 @@ export class ViewPdf {
   pdfUrl: string;
 
   public sendTo   : any;
-   public subject  : string = 'Champions Report';
-   public message  : string = 'Champions Recon Report attached';
+  public subject  : string = 'Champions Report';
+  public message  : string = 'Champions Recon Report attached';
 
 
   constructor(private viewCtrl: ViewController,
