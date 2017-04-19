@@ -30,9 +30,6 @@ export class District {
         }
       }
 
-      console.log(index);
-
-
       if(index > -1) {
         this.projects[index].setBullet1(project.bullet1);
         this.projects[index].setBullet2(project.bullet2);

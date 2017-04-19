@@ -67,7 +67,6 @@ export class ProjectDetailPage {
     if(photos.length < 1){
       photos.push({ photo: ''});
     }
-    // console.log(photos);
     const photoFGs = photos.map(photo => this.fb.group(photo));
     const projectFormArray = this.fb.array(photoFGs);
     this.projectForm.setControl('photos', projectFormArray);
@@ -78,7 +77,6 @@ export class ProjectDetailPage {
     // add photo to the list
     const control = <FormArray>this.projectForm.controls['photos'];
     control.push(this.initPhoto());
-    // console.log("Photos", this.projectForm.get('photos').value)
   }
 
   removePhoto(i: number) {
@@ -119,8 +117,8 @@ export class ProjectDetailPage {
       sourceType: sourceType,
       destinationType: Camera.DestinationType.DATA_URL,
       saveToPhotoAlbum: saveToAlbum,     
-      targetWidth: 300,
-      targetHeight: 300,
+      targetWidth: 500,
+      targetHeight: 500,
       correctOrientation: true,
     }
     if (Camera['installed']()) {
@@ -155,7 +153,6 @@ export class ProjectDetailPage {
   save() {
     if(!this.projectForm.valid) { return; }
     this.viewCtrl.dismiss(this.projectForm.value);
-    // console.log(this.projectForm.value);
   }
 
   }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+// import {pdfmake} from 'pdfmake';
 
 declare var pdfMake: any;
 
@@ -20,6 +21,14 @@ export class ReportService {
     public createPdf(report) {
         return new Promise((resolve, reject) => {
             var dd = this.createDocumentDefinition(report);
+            // pdfMake.fonts = {
+            //     BookmanOS: {
+            //         normal: 'BookmanOS-Regular.ttf',
+            //         bold: 'BookmanOS-Bold.ttf',
+            //         italics: 'BookmanOS-Italic.ttf',
+            //         bolditalics: 'BookmanOS-BoldItalic.ttf'
+            //     }
+            // }
             var pdf = pdfMake.createPdf(dd);
 
             pdf.getDataUrl((data) => {
@@ -76,13 +85,13 @@ export class ReportService {
                     });
 
                 //Photos
-                if(district.projects[i].photo1) {
-                    projContent.push({ image: district.projects[i].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                for(let j=0; j < district.projects[i].photos.length; j++){
+                    // console.log("Photo: ", district.projects[i].photos[j].photo);
+                    if(district.projects[i].photos[j].photo) {
+                        projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                    }
                 }
 
-                if(district.projects[i].photo2) {
-                    projContent.push({ image: district.projects[i].photo2, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
-                }
             }
 
             return projContent;
@@ -91,6 +100,9 @@ export class ReportService {
         var dd = {
             content: getContent(),
             footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
+            // defaultStyle: {
+            //     font: 'BookmanOS'
+            // },
             styles: {
                 header: {
                     fontSize: 20,
