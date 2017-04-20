@@ -75,14 +75,16 @@ export class ReportService {
                 }
 
                 //Bullet Point Comments
-                projContent.push(
-                    { ul: [
-                        district.projects[i].bullet1,
-                        district.projects[i].bullet2,
-                        district.projects[i].bullet3
-                    ],
-                        pageBreak: 'after'
-                    });
+                // if(district.projects[i].bullet1 || district.projects[i].bullet2 || district.projects[i].bullet3) {
+                                projContent.push(
+                                    { ul: [
+                                        district.projects[i].bullet1,
+                                        district.projects[i].bullet2,
+                                        district.projects[i].bullet3
+                                    ],
+                                        // pageBreak: 'after'
+                                    });
+                            // }
 
                 //Photos
                 for(let j=0; j < district.projects[i].photos.length; j++){
