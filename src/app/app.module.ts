@@ -10,6 +10,7 @@ import { DistrictDetailPage } from '../pages/district-detail/district-detail';
 import { ProjectDetailPage } from '../pages/project-detail/project-detail';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ViewPdf } from '../pages/view-pdf/view-pdf';
+import { UserDetailsPage } from '../pages/user-details/user-details';
 
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
@@ -25,6 +26,7 @@ import { ReportService }  from '../providers/report-service';
     ProjectDetailPage,
     ItemCreatePage,
     ViewPdf,
+    UserDetailsPage,
     PdfViewerComponent
   ],
   imports: [
@@ -37,6 +39,7 @@ import { ReportService }  from '../providers/report-service';
     DistrictDetailPage,
     ProjectDetailPage,
     ItemCreatePage,
+    UserDetailsPage,
     ViewPdf
   ],
   providers: [ DistrictService, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]

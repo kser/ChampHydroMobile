@@ -3,6 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { DistrictMasterPage } from '../pages/district-master/district-master';
+import { UserDetailsPage } from '../pages/user-details/user-details';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -20,6 +22,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Districts', component: DistrictMasterPage },
+      { title: 'User Info', component: UserDetailsPage },
     ];
 
   }

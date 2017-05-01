@@ -34,7 +34,7 @@ export class ViewPdf {
 
   emailPdf()
    {
-     console.log(this.pdfUrl);
+    //  console.log(this.pdfUrl);
       this.platform.ready()
       .then(() =>
       {
