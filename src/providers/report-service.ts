@@ -21,14 +21,14 @@ export class ReportService {
     public createPdf(report) {
         return new Promise((resolve, reject) => {
             var dd = this.createDocumentDefinition(report);
-            // pdfMake.fonts = {
-            //     BookmanOS: {
-            //         normal: 'BookmanOS-Regular.ttf',
-            //         bold: 'BookmanOS-Bold.ttf',
-            //         italics: 'BookmanOS-Italic.ttf',
-            //         bolditalics: 'BookmanOS-BoldItalic.ttf'
-            //     }
-            // }
+            pdfMake.fonts = {
+                BookmanOS: {
+                    normal: 'BookmanOS-Regular.TTF',
+                    bold: 'BookmanOS-Bold.TTF',
+                    italics: 'BookmanOS-Italic.TTF',
+                    bolditalics: 'BookmanOS-BoldItalic.TTF'
+                }
+            }
             var pdf = pdfMake.createPdf(dd);
 
             pdf.getDataUrl((data) => {
@@ -107,9 +107,9 @@ export class ReportService {
         var dd = {
             content: getContent(),
             footer: function(currentPage, pageCount) { return currentPage.toString() + ' of ' + pageCount; },
-            // defaultStyle: {
-            //     font: 'BookmanOS'
-            // },
+            defaultStyle: {
+                font: 'BookmanOS'
+            },
             styles: {
                 header: {
                     fontSize: 20,
