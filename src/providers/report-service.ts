@@ -65,13 +65,18 @@ export class ReportService {
 
                 //Project Name
                 projContent.push( 
-                    { text: district.projects[i].name, style: 'header', pageBreak: 'before'},
+                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,0]},
                     );
 
                 //Project Map
                 if(district.projects[i].map){
                 projContent.push(
-                    { image: district.projects[i].map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] });
+                        { image: district.projects[i].map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] }
+                    );
+                } else { //default to district map
+                    projContent.push(
+                        { image: district.map, alignment: 'center', width: 500, margin: [0, 0, 0, 20] }
+                    );
                 }
 
                 //Bullet Point Comments
@@ -82,7 +87,7 @@ export class ReportService {
                                         district.projects[i].bullet2,
                                         district.projects[i].bullet3
                                     ],
-                                        // pageBreak: 'after'
+                                        pageBreak: 'after'
                                     });
                             // }
 

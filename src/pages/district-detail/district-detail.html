@@ -23,7 +23,8 @@
     <ion-item-sliding *ngFor="let project of selectedDistrict.projects">
       <button ion-item (click)="editProject(project)">
         <ion-thumbnail item-left>
-          <img [src]="project.map" />
+          <img *ngIf="project.map" [src]="project.map" />
+          <img *ngIf="!project.map" [src]="selectedDistrict.map" />
         </ion-thumbnail>
         <h2>{{project.name}}</h2>
         <p>Updated: {{project.lastUpdate | date:'short'}}</p>
