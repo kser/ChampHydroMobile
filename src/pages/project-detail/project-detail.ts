@@ -118,8 +118,8 @@ export class ProjectDetailPage {
       sourceType: sourceType,
       destinationType: Camera.DestinationType.DATA_URL,
       saveToPhotoAlbum: saveToAlbum,     
-      targetWidth: 500,
-      targetHeight: 500,
+      // targetWidth: 500,
+      // targetHeight: 500,
       correctOrientation: true,
     }
     if (Camera['installed']()) {
