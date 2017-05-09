@@ -2,7 +2,9 @@ import { Project } from './project';
 
 export class District {
 
-  constructor(public name: string = "", public map = "", public projects: Project[] = []) {}
+  constructor(public name: string = "", public map = "", public projects: Project[] = [], public longName: string = "") {
+    this.longName = this.getLongName(name);
+  }
 
 
   addProject(project){
@@ -40,5 +42,15 @@ export class District {
       else {
         console.log("No Project Found");
       }
-}
+    }
+
+    getLongName(name) {
+      if(name.lastIndexOf('HC MUD')===0) {
+        return "HARRIS COUNTY MUNICIPAL UTILITY DISTRICT" + name.substr(6);
+      } else if(name.lastIndexOf('FBC MUD') ===0){
+        return "FORT BEND COUNTY MUNICIPAL UTILITY DISTRICT" + name.substr(7);
+      } else {
+        return "long " + name;
+      }
+    }
 }

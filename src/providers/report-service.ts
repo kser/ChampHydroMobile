@@ -14,9 +14,9 @@ export class ReportService {
         Cell: "713-703-3516"
     }
 
-    public createPdf(report) {
+    public buildPdf(district) {
         return new Promise((resolve, reject) => {
-            var dd = this.createDocumentDefinition(report);
+            var dd = this.createDocumentDefinition(district);
             //add font
             pdfMake.fonts = {
                 // 'Gothic' : {
@@ -52,7 +52,7 @@ export class ReportService {
             projContent.push(
                 { image: 'chl-logo-title.JPG', alignment: 'center', width:350, margin: [0,0,0,20] },
                 // { text: 'Erosion Control Specialist since 1976', style: 'caption', margin: [0, 0, 0, 20] },
-                { text: district.name, style: 'header' },
+                { text: district.longName, style: 'header' },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
                 { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },

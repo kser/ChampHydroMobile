@@ -64,9 +64,9 @@ export class DistrictDetailPage {
   }
 
   buildReport() {
-    //console.log(this.selectedDistrict);
+    // console.log(this.selectedDistrict);
 
-    this.reportService.createPdf(this.selectedDistrict)
+    this.reportService.buildPdf(this.selectedDistrict)
       .then((pdf) => {
         // let blob = new Blob([pdf], { type: 'application/pdf' });
         let pdfUrl = { pdfUrl: pdf };  //URL.createObjectURL(blob) };
