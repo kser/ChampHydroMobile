@@ -46,9 +46,9 @@ export class District {
 
     getLongName(name) {
       if(name.lastIndexOf('HC MUD')===0) {
-        return "HARRIS COUNTY MUNICIPAL UTILITY DISTRICT" + name.substr(6);
+        return "HARRIS COUNTY\n MUNICIPAL UTILITY DISTRICT\n" + name.substr(7);
       } else if(name.lastIndexOf('FBC MUD') ===0){
-        return "FORT BEND COUNTY MUNICIPAL UTILITY DISTRICT" + name.substr(7);
+        return "FORT BEND COUNTY\n MUNICIPAL UTILITY DISTRICT\n" + name.substr(8);
       } else {
         return "long " + name;
       }

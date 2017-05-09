@@ -19,12 +19,6 @@ export class ReportService {
             var dd = this.createDocumentDefinition(district);
             //add font
             pdfMake.fonts = {
-                // 'Gothic' : {
-                //     normal: 'gothic.ttf',
-                //     bold: 'gothic.ttf',
-                //     italics: 'gothic.ttf',
-                //     bolditalics: 'gothic.ttf'
-                // },
                 'TimesNewRoman': {
                     normal: 'times new roman.ttf',
                     bold: 'times new roman bold.ttf',
@@ -51,8 +45,7 @@ export class ReportService {
             //Title Page
             projContent.push(
                 { image: 'chl-logo-title.JPG', alignment: 'center', width:350, margin: [0,0,0,20] },
-                // { text: 'Erosion Control Specialist since 1976', style: 'caption', margin: [0, 0, 0, 20] },
-                { text: district.longName, style: 'header' },
+                { text: district.longName, style: 'header', margin: [50, 0, 50, 20] },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
                 { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
@@ -131,7 +124,6 @@ export class ReportService {
                 header: {
                     fontSize: 20,
                     alignment: 'center',
-                    margin: [0, 0, 0, 20]
                 },
                 subheader: {
                     fontSize: 18,
