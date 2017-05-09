@@ -125,14 +125,16 @@ export class ProjectDetailPage {
     if (Camera['installed']()) {
       Camera.getPicture(cameraOptions)
       .then((data) => {
-        this.projectForm.value.photos[photoNum].photo = 'data:image/jpg;base64,' +  data;
-        // this.projectForm.patchValue({ 'photo': 'data:image/jpg;base64,' +  data });
+        // this.projectForm.value.photos[photoNum].photo = 'data:image/jpg;base64,' +  data;
+        this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue('data:image/jpg;base64,' +  data);
+
       }, (err) => {
         alert('Unable to load photo');
       })
     } else {
         // alert('Camera not available');
-        this.projectForm.value.photos[photoNum].photo = defaultPhoto; //patchValue({ 'photo': defaultPhoto });
+        // this.projectForm.value.photos[photoNum].photo = defaultPhoto; //patchValue({ 'photo': defaultPhoto });
+        this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue(defaultPhoto);
     }
   }
 
