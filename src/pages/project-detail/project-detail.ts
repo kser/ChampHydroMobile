@@ -159,6 +159,6 @@ export class ProjectDetailPage {
     this.viewCtrl.dismiss(this.projectForm.value);
   }
 
-  }
+}
 
 
