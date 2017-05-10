@@ -44,7 +44,7 @@ export class ReportService {
 
             //Title Page
             projContent.push(
-                { image: 'chl-logo-title.JPG', alignment: 'center', width:350, margin: [0,0,0,20] },
+                { image: 'chl-logo-title.JPG', alignment: 'center', width:320, margin: [0,0,0,20] },
                 { text: district.longName, style: 'header', margin: [50, 0, 50, 20] },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
