@@ -15,6 +15,23 @@
 
 
 <ion-content padding>
-  <h3>Input your information to be used on the report title page.</h3>
+  <p>Input your information to be used on the report title page.</p>
+
+  <form [formGroup]="userForm" (ngSubmit)="saveForm()">
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Cell Phone</ion-label>
+        <ion-input type="tel" formControlName="cellphone"></ion-input>
+      </ion-item>
+      <button ion-button block type="submit" [disabled]="!userForm.valid">Save</button>
+      <button ion-button block outline type="button" (click)="logForm()">Log</button>
+    </form>
     
 </ion-content>
