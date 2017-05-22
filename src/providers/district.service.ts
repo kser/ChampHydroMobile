@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
 // import { Project } from '../models/project';
@@ -9,18 +9,25 @@ import { DISTRICTS } from '../mocks/mock-districts';
 @Injectable()
 export class DistrictService {
   districts: District[] = [];
-
-  defaultDistrict: any = {  
-    name: "HC MUD 468", 
-    map: "assets/img/DistrictMaps/mud-468-map.jpg", 
-    projects: [
-      {name:"Vintage Southeast Detention Pond"}
-      ] 
-  };
+  user: any = {name: "", email: ""};
   
-  
-  constructor(public http: Http) {
+  constructor(public storage: Storage) {
     this.districts=DISTRICTS;
+
+    //get user info from storage
+    this.storage.get('user').then((user) => {
+      this.user = user; 
+    });
+  }
+
+  getUser() {
+    return this.user;
+  }
+
+  saveUser(user) {
+    this.user = user;
+    // let newUser = JSON.stringify(user);
+    this.storage.set('user', user);
   }
 
   query(params?: any) {

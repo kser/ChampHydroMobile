@@ -63,10 +63,14 @@ export class DistrictDetailPage {
     this.selectedDistrict.removeProject(project);
   }
 
+
+ /**
+   * Call ReportService to build hte PDF report
+   */
   buildReport() {
     // console.log(this.selectedDistrict);
 
-    this.reportService.buildPdf(this.selectedDistrict)
+    this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser())
       .then((pdf) => {
         // let blob = new Blob([pdf], { type: 'application/pdf' });
         let pdfUrl = { pdfUrl: pdf };  //URL.createObjectURL(blob) };

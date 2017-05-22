@@ -11,10 +11,14 @@ export class ReportService {
         ShortDate: new Date().toLocaleDateString('en-US'),
         Rep: "Josh Fort",
         Email: "jfort@champhydro.com",
-        Cell: "713-703-3516"
     }
 
-    public buildPdf(district) {
+    public buildPdf(district, user) {
+
+        console.log('buildpdf', user);
+        this.reportData.Rep = user.name;
+        this.reportData.Email = user.email;
+
         return new Promise((resolve, reject) => {
             var dd = this.createDocumentDefinition(district);
             //add font

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 // import { NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { Storage } from '@ionic/storage';
+import { DistrictService }  from '../../providers/district.service';
 
 
 /*
@@ -18,42 +18,30 @@ import { Storage } from '@ionic/storage';
 export class UserDetailsPage {
 
   private userForm : FormGroup;
-  private name;
-  // private email;
-  // private cellphone;
+  public user = {name: "", email: ""};
 
-  constructor( private formBuilder: FormBuilder, public storage: Storage ) {
-    this.getNameFromStorage();
+  constructor( private formBuilder: FormBuilder, public dataService: DistrictService ) {
+    this.user = this.dataService.getUser();
+
     this.createForm();
   }
 
-  getNameFromStorage() {
-    this.storage.get('name').then(val => {
-      console.log(val);
-      this.name = val;
-    })
-  }
 
   createForm() {
-    console.log("CF");
-    console.log(this.name);
+    console.log("CF", this.user, this.user.name, this.user.email);
     this.userForm = this.formBuilder.group({
-      name: [this.name, Validators.required],
-      email: ['kyle@kyle.com', Validators.required],
-      cellphone: ['7133344456', Validators.required]
+      name: [this.user.name, Validators.required],
+      email: [this.user.email, Validators.required],
     });
   }
 
   saveForm(){
-    this.storage.set('name', this.userForm.value.name );
-    // this.storage.set('email', this.userForm.value.email );
-    // this.storage.set('cellphone', this.userForm.value.cellphone );
+    this.user = this.userForm.value;
+    this.dataService.saveUser(this.userForm.value);
   }
   
   logForm(){
-    this.storage.get('name').then((data)=>{
-      console.log(data);
-    });
+    console.log(this.user);
   }
 
 }
