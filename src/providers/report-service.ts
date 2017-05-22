@@ -15,9 +15,8 @@ export class ReportService {
 
     public buildPdf(district, user) {
 
-        console.log('buildpdf', user);
-        this.reportData.Rep = user.name;
-        this.reportData.Email = user.email;
+        if(user.name) this.reportData.Rep = user.name;
+        if(user.email) this.reportData.Email = user.email;
 
         return new Promise((resolve, reject) => {
             var dd = this.createDocumentDefinition(district);
