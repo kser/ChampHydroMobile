@@ -28,10 +28,10 @@ export class UserDetailsPage {
 
 
   createForm() {
-    console.log("CF", this.user, this.user.name, this.user.email);
+    // console.log("CF", this.user, this.user.name, this.user.email);
     this.userForm = this.formBuilder.group({
-      name: [this.user.name, Validators.required],
-      email: [this.user.email, Validators.required],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
     });
   }
 
