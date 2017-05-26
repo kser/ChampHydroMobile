@@ -25,9 +25,11 @@ export class DistrictDetailPage {
 
   selectedDistrict: District;
   projects: Project[];
+  user: any;
 
   constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
+    this.user = districtService.getUser();
   }
 
   /**

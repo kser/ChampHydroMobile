@@ -24,6 +24,7 @@ export class UserDetailsPage {
     this.user = this.dataService.getUser();
 
     this.createForm();
+    this.setFormValues();
   }
 
 
@@ -33,6 +34,11 @@ export class UserDetailsPage {
       name: ['', Validators.required],
       email: ['', Validators.required],
     });
+  }
+
+  setFormValues() {
+    this.userForm.controls['name'].setValue(this.user.name);
+    this.userForm.controls['email'].setValue(this.user.email);
   }
 
   saveForm(){

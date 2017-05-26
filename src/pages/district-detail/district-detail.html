@@ -41,5 +41,7 @@
 </ion-content>
 
 <ion-footer>
+  <h6 text-center>Your Info:</h6>
+  <p text-center>{{this.user.name}} <{{this.user.email}}></p>
   <button ion-button block (click)="buildReport()">Build Report</button>
 </ion-footer>

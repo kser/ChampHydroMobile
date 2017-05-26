@@ -50,7 +50,7 @@ export class District {
       } else if(name.lastIndexOf('FBC MUD') ===0){
         return "FORT BEND COUNTY\n MUNICIPAL UTILITY DISTRICT\n" + name.substr(8);
       } else {
-        return "long " + name;
+        return name;
       }
     }
 }
