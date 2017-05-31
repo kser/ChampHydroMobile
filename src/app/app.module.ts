@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-
+import { File } from '@ionic-native/file';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
 
@@ -44,6 +44,6 @@ import { ReportService }  from '../providers/report-service';
     UserDetailsPage,
     ViewPdf
   ],
-  providers: [ DistrictService, Storage, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [ DistrictService, Storage, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { NavController, ViewController } from 'ionic-angular';
 
-import { Camera } from 'ionic-native';
+// import { Camera } from 'ionic-native';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /*
   Generated class for the ItemCreatePage. used to create District and Project objects
@@ -23,7 +24,7 @@ export class ItemCreatePage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, public viewCtrl: ViewController, private formBuilder: FormBuilder, private camera:Camera) {
     this.form = formBuilder.group({
       map: [''],
       name: ['', Validators.required],
@@ -48,17 +49,17 @@ export class ItemCreatePage {
   
 
   getMap() {
-    let cameraOptions = {
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.DATA_URL,      
+    let cameraOptions: CameraOptions = {
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,      
       quality: 75,
       targetWidth: 96,
       targetHeight: 96,
-      encodingType: Camera.EncodingType.JPEG,      
+      encodingType: this.camera.EncodingType.JPEG,      
       correctOrientation: true
     }
-    if (Camera['installed']()) {
-      Camera.getPicture(cameraOptions)
+    if (this.camera['installed']()) {
+      this.camera.getPicture(cameraOptions)
       .then((data) => {
         this.form.patchValue({ 'map': 'data:image/jpg;base64,' +  data });
       }, (err) => {
@@ -71,6 +72,7 @@ export class ItemCreatePage {
 
   processWebImage(event) {
     let input = this.fileInput.nativeElement;
+    console.log("input: ", input);
 
     var reader = new FileReader();
     reader.onload = (readerEvent) => {
@@ -80,10 +82,12 @@ export class ItemCreatePage {
       this.form.patchValue({ 'map': imageData });
     };
 
+    console.log("files: ", event.target.files[0]);
     reader.readAsDataURL(event.target.files[0]);
   }
 
   getProfileImageStyle() {
+    // console.log('url(' + this.form.controls['map'].value + ')');
     return 'url(' + this.form.controls['map'].value + ')'
   }
 
@@ -101,6 +105,6 @@ export class ItemCreatePage {
   done() {
     if(!this.form.valid) { return; }
     this.viewCtrl.dismiss(this.form.value);
-    console.log(this.form.value);
+    // console.log(this.form.value);
   }
 }

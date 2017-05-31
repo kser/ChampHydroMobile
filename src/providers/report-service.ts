@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-// import {pdfmake} from 'pdfmake';
+// import { File } from '@ionic-native/file';
 
 declare var pdfMake: any;
 
@@ -12,6 +12,7 @@ export class ReportService {
         Rep: "Josh Fort",
         Email: "jfort@champhydro.com",
     }
+    // public base64Images: String[] = [];
 
     public buildPdf(district, user) {
 
@@ -38,8 +39,14 @@ export class ReportService {
         });
     }
 
+    // public getBase64ImagesFromDistrict(district) {
+    //     var file = new File();
+    //     file.readAsDataURL(district.map, district.name + '.jpg').then(imageData => this.base64Images[0] = imageData);
+    // }
 
     private createDocumentDefinition(district) {
+
+        // this.getBase64ImagesFromDistrict(district);
 
 
         var getContent = () => {

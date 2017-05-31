@@ -1,6 +1,5 @@
 {
   "name": "ChampHydroMobile",
   "app_id": "3a7fc6ea",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }
