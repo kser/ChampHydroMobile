@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { File } from '@ionic-native/file';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { Camera } from '@ionic-native/camera';
 
 
 import { MyApp } from './app.component';
@@ -44,6 +45,6 @@ import { ReportService }  from '../providers/report-service';
     UserDetailsPage,
     ViewPdf
   ],
-  providers: [ DistrictService, Storage, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [ DistrictService, Camera, Storage, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
