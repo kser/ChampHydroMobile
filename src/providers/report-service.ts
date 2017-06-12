@@ -59,6 +59,8 @@ export class ReportService {
         var getContent = () => {
             let projContent = [];
 
+            console.log("map: ", this.base64Images[0]);
+
             //Title Page
             projContent.push(
                 { image: 'chl-logo-title.JPG', alignment: 'center', width:320, margin: [0,0,0,20] },

@@ -15,7 +15,7 @@ export class DistrictMasterPage {
   currentDistricts: District[];
 
   constructor(public navCtrl: NavController, public districtService: DistrictService, public modalCtrl: ModalController) {
-    this.currentDistricts = this.districtService.query();
+    this.currentDistricts = this.districtService.query() ;
   }
 
   /**

@@ -6,14 +6,14 @@ export const DISTRICTS:District[] = [
   //JERRY Districts
   new District(
     "Cimarron",
-    "assets/img/DistrictMaps/cimarron.jpg",
+    "assets/img/DistrictMaps/Cimarron.jpg",
     [
       new Project("Perch Rd Pond", "assets/img/DistrictMaps/Perch Rd Pond.jpg")
     ]
     ),
     new District(
     "CINCO SW 1",
-    "assets/img/DistrictMaps/CINCO SW 1.jpg",
+    "assets/img/DistrictMaps/Cinco SW 1.jpg",
     [
       new Project("Channel DE", "assets/img/DistrictMaps/Channel DE.jpg"),
       new Project("Channel DSE", "assets/img/DistrictMaps/Channel DSE.jpg"),

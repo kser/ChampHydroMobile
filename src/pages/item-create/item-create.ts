@@ -58,7 +58,7 @@ export class ItemCreatePage {
       encodingType: this.camera.EncodingType.JPEG,      
       correctOrientation: true
     }
-    if (this.camera['installed']()) {
+    if (this.camera) {//['installed']()) {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
         this.form.patchValue({ 'map': 'data:image/jpg;base64,' +  data });

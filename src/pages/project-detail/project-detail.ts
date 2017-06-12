@@ -124,14 +124,16 @@ export class ProjectDetailPage {
       targetHeight: 700,
       correctOrientation: true,
     }
-    if (this.camera['installed']()) {
+    if (this.camera) {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
         // this.projectForm.value.photos[photoNum].photo = 'data:image/jpg;base64,' +  data;
         this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue('data:image/jpg;base64,' +  data);
 
       }, (err) => {
-        alert('Unable to load photo');
+        // alert('Unable to load photo');
+        this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue(defaultPhoto);
+
       })
     } else {
         // alert('Camera not available');

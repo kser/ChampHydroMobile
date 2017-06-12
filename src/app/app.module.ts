@@ -1,13 +1,18 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { File } from '@ionic-native/file';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { File } from '@ionic-native/file';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { Camera } from '@ionic-native/camera';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { MyApp } from './app.component';
+import { BrowserModule } from '@angular/platform-browser';
+
+
 import { DistrictMasterPage } from '../pages/district-master/district-master';
 import { DistrictDetailPage } from '../pages/district-detail/district-detail';
 import { ProjectDetailPage } from '../pages/project-detail/project-detail';
@@ -33,7 +38,9 @@ import { ReportService }  from '../providers/report-service';
     PdfViewerComponent
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +52,6 @@ import { ReportService }  from '../providers/report-service';
     UserDetailsPage,
     ViewPdf
   ],
-  providers: [ DistrictService, Camera, Storage, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [ DistrictService, Camera, StatusBar, SplashScreen, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

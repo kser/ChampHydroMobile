@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
-// import { Project } from '../models/project';
 
 import { DISTRICTS } from '../mocks/mock-districts';
 
@@ -14,9 +13,10 @@ export class DistrictService {
   constructor(public storage: Storage) {
     this.districts=DISTRICTS;
 
-    //get user info from storage
+    // get user info from storage
     this.storage.get('user').then((user) => {
-      this.user = user; 
+      if(user) this.user = user;
+      // console.log('User: ', user)
     });
   }
 
