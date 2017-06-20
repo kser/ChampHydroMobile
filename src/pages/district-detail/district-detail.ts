@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { File } from '@ionic-native/file';
 
 import { DistrictService }  from '../../providers/district.service';
 import { ReportService }  from '../../providers/report-service';
@@ -26,11 +27,21 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
   user: any;
+  district64Images: String[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService) {
+  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService, public file: File) {
     this.selectedDistrict = navParams.get('district');
     this.user = districtService.getUser();
+    
+    this.getBase64ImagesFromDistrict(this.selectedDistrict);
   }
+
+  getBase64ImagesFromDistrict(district) {
+        var file = new File();
+        // console.log("filepath: ", district.map.substring(0,district.map.lastIndexOf("/") + 1));
+        // console.log("filename: ", district.map.substring(district.map.lastIndexOf("/") + 1));
+        file.readAsDataURL(district.map.substring(0,district.map.lastIndexOf("/")+1), district.map.substring(district.map.lastIndexOf("/") + 1)).then(imageData => this.district64Images[0] = imageData);
+    }
 
   /**
    * Prompt the user to add a new district. This shows our DistrictCreatePage in a
@@ -72,7 +83,7 @@ export class DistrictDetailPage {
   buildReport() {
     // console.log(this.selectedDistrict);
 
-    this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser())
+    this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser(), this.district64Images)
       .then((pdf) => {
         // let blob = new Blob([pdf], { type: 'application/pdf' });
         let pdfUrl = { pdfUrl: pdf };  //URL.createObjectURL(blob) };

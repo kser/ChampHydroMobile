@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { File } from '@ionic-native/file';
+// import { File } from '@ionic-native/file';
 
 declare var pdfMake: any;
 
 @Injectable()
 export class ReportService {
 
-    constructor(public file: File) {}
+    // constructor(public file: File) {}
 
     public reportData = {
         Date: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
@@ -16,13 +16,13 @@ export class ReportService {
     }
     public base64Images: String[] = [];
 
-    public buildPdf(district, user) {
+    public buildPdf(district, user, district64Images) {
 
         if(user.name) this.reportData.Rep = user.name;
         if(user.email) this.reportData.Email = user.email;
 
         return new Promise((resolve, reject) => {
-            var dd = this.createDocumentDefinition(district);
+            var dd = this.createDocumentDefinition(district, district64Images);
             //add font
             pdfMake.fonts = {
                 'TimesNewRoman': {
@@ -41,25 +41,13 @@ export class ReportService {
         });
     }
     
-    
 
-    public getBase64ImagesFromDistrict(district) {
-        var file = new File();
-        console.log("filepath: ", district.map.substring(0,district.map.lastIndexOf("/") + 1));
-        console.log("filename: ", district.map.substring(district.map.lastIndexOf("/") + 1));
-
-        file.readAsDataURL(district.map.substring(0,district.map.lastIndexOf("/")+1), district.map.substring(district.map.lastIndexOf("/") + 1)).then(imageData => this.base64Images[0] = imageData);
-    }
-
-    private createDocumentDefinition(district) {
-
-        this.getBase64ImagesFromDistrict(district);
-
+    private createDocumentDefinition(district, district64Images) {
 
         var getContent = () => {
             let projContent = [];
 
-            console.log("map: ", this.base64Images[0]);
+            console.log("map: ", district64Images[0]);
 
             //Title Page
             projContent.push(
