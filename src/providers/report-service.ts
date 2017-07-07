@@ -16,13 +16,13 @@ export class ReportService {
     }
     public base64Images: String[] = [];
 
-    public buildPdf(district, user, district64Images) {
+    public buildPdf(district, user) {
 
         if(user.name) this.reportData.Rep = user.name;
         if(user.email) this.reportData.Email = user.email;
 
         return new Promise((resolve, reject) => {
-            var dd = this.createDocumentDefinition(district, district64Images);
+            var dd = this.createDocumentDefinition(district);
             //add font
             pdfMake.fonts = {
                 'TimesNewRoman': {
@@ -42,12 +42,10 @@ export class ReportService {
     }
     
 
-    private createDocumentDefinition(district, district64Images) {
+    private createDocumentDefinition(district) {
 
         var getContent = () => {
             let projContent = [];
-
-            console.log("map: ", district64Images[0]);
 
             //Title Page
             projContent.push(
@@ -55,7 +53,7 @@ export class ReportService {
                 { text: district.longName, style: 'header', margin: [50, 0, 50, 20] },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
-                { image: this.base64Images[0], alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
+                { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
 
                 { text: '13226 Kaltenbrun  ~  Houston, Texas  77086  ~  Phone: 281-744-9538  ~  Fax: 281-445-2349', style: 'info', margin: [0,0,0,10]},
                 { text: "Account Representattive: " + this.reportData.Rep + "  ~ Email: " + this.reportData.Email, style: 'info' },
@@ -63,45 +61,45 @@ export class ReportService {
 
             
             //PROJECTS - loop through all projects 
-            // for(let i=0; i<district.projects.length; i++){
+            for(let i=0; i<district.projects.length; i++){
 
-            //     //Project Name
-            //     projContent.push( 
-            //          { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,20]},
-            //         );
+                //Project Name
+                projContent.push( 
+                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,20]},
+                    );
 
-            //     //Project Map
-            //     if(district.projects[i].map){
-            //     projContent.push(
-            //             { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
-            //         );
-            //     } else { //default to district map
-            //         projContent.push(
-            //             { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
-            //         );
-            //     }
+                //Project Map
+                if(district.projects[i].map){
+                projContent.push(
+                        { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                    );
+                } else { //default to district map
+                    projContent.push(
+                        { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                    );
+                }
 
-            //     //Bullet Point Comments
-            //     // if(district.projects[i].bullet1 || district.projects[i].bullet2 || district.projects[i].bullet3) {
-            //                     projContent.push(
-            //                         { ul: [
-            //                             {text: district.projects[i].bullet1, margin: [0, 0, 0, 10]},
-            //                             {text: district.projects[i].bullet2, margin: [0, 0, 0, 10]},
-            //                             {text: district.projects[i].bullet3, margin: [0, 0, 0, 10]}
-            //                         ],
-            //                             pageBreak: 'after'
-            //                         });
-            //                 // }
+                //Bullet Point Comments
+                // if(district.projects[i].bullet1 || district.projects[i].bullet2 || district.projects[i].bullet3) {
+                                projContent.push(
+                                    { ul: [
+                                        {text: district.projects[i].bullet1, margin: [0, 0, 0, 10]},
+                                        {text: district.projects[i].bullet2, margin: [0, 0, 0, 10]},
+                                        {text: district.projects[i].bullet3, margin: [0, 0, 0, 10]}
+                                    ],
+                                        pageBreak: 'after'
+                                    });
+                            // }
 
-            //     //Photos
-            //     for(let j=0; j < district.projects[i].photos.length; j++){
-            //         // console.log("Photo: ", district.projects[i].photos[j].photo);
-            //         if(district.projects[i].photos[j].photo) {
-            //             projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
-            //         }
-            //     }
+                //Photos
+                for(let j=0; j < district.projects[i].photos.length; j++){
+                    // console.log("Photo: ", district.projects[i].photos[j].photo);
+                    if(district.projects[i].photos[j].photo) {
+                        projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                    }
+                }
 
-            // }
+            }
 
             return projContent;
         };

@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
 
-import { DISTRICTS } from '../mocks/mock-districts';
+//import { DISTRICTS } from '../mocks/mock-districts';
 
 @Injectable()
 export class DistrictService {
@@ -11,7 +11,7 @@ export class DistrictService {
   user: any = {name: "", email: ""};
   
   constructor(public storage: Storage) {
-    this.districts=DISTRICTS;
+    //this.districts=DISTRICTS;
 
     // get user info from storage
     this.storage.get('user').then((user) => {
