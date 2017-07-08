@@ -63,7 +63,8 @@ export class ItemCreatePage {
       .then((data) => {
         this.form.patchValue({ 'map': 'data:image/jpg;base64,' +  data });
       }, (err) => {
-        alert('Unable to load map');
+        // alert('Unable to load map');
+        this.fileInput.nativeElement.click();
       })
     } else {
       this.fileInput.nativeElement.click();

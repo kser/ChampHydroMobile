@@ -20,6 +20,12 @@
 
 
 <ion-content>
+  <div text-center *ngIf="currentDistricts.length === 0">
+    <ion-icon name="star"></ion-icon>
+    
+    <h3>No districts yet. </h3>
+    <p>Click that blue '+' and get started!</p>
+  </div>
   <ion-list>
     <ion-item-sliding *ngFor="let district of currentDistricts">
       <button ion-item (click)="openDistrict(district)">
