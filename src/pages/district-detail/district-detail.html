@@ -19,6 +19,13 @@
 
 
 <ion-content padding>
+  <div class="grey" text-center *ngIf="selectedDistrict.projects.length === 0">
+    <ion-icon name="md-image"></ion-icon>
+    <!-- <img height="75px" src="assets/img/CHL_logo_BW.jpg"> -->
+    
+    <h2>No Projects yet. </h2>
+    <p>Click that '+' in the top right to create one!</p>
+  </div>
   <ion-list>
     <ion-item-sliding *ngFor="let project of selectedDistrict.projects">
       <button ion-item (click)="editProject(project)">
@@ -43,5 +50,5 @@
 <ion-footer>
   <h6 text-center>Your Info:</h6>
   <p text-center>{{this.user.name}} <{{this.user.email}}></p>
-  <button ion-button block (click)="buildReport()">Build Report</button>
+  <button ion-button block [disabled]="selectedDistrict.projects.length === 0" (click)="buildReport()">Build Report</button>
 </ion-footer>

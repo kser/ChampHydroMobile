@@ -73,7 +73,7 @@ export class ReportService {
                 projContent.push(
                         { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
                     );
-                } else { //default to district map
+                } else if (district.map) { //default to district map
                     projContent.push(
                         { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
                     );

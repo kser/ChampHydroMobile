@@ -20,11 +20,12 @@
 
 
 <ion-content>
-  <div text-center *ngIf="currentDistricts.length === 0">
-    <ion-icon name="star"></ion-icon>
+  <div class="grey" text-center *ngIf="currentDistricts.length === 0">
+    <ion-icon name="md-image"></ion-icon>
+    <!-- <img height="75px" src="assets/img/CHL_logo_BW.jpg"> -->
     
-    <h3>No districts yet. </h3>
-    <p>Click that blue '+' and get started!</p>
+    <h2>No districts yet. </h2>
+    <p>Click that '+' in the top right to get started!</p>
   </div>
   <ion-list>
     <ion-item-sliding *ngFor="let district of currentDistricts">
