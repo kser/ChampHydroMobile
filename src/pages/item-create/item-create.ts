@@ -44,7 +44,7 @@ export class ItemCreatePage {
   }
 
   createItem(model) {
-    console.log(model);
+    // console.log(model);
   }
   
 
@@ -52,9 +52,9 @@ export class ItemCreatePage {
     let cameraOptions: CameraOptions = {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,      
-      quality: 75,
-      targetWidth: 96,
-      targetHeight: 96,
+      quality: 100,
+      targetWidth: 550,
+      targetHeight: 550,
       encodingType: this.camera.EncodingType.JPEG,      
       correctOrientation: true
     }
@@ -73,7 +73,7 @@ export class ItemCreatePage {
 
   processWebImage(event) {
     let input = this.fileInput.nativeElement;
-    console.log("input: ", input);
+    // console.log("input: ", input);
 
     var reader = new FileReader();
     reader.onload = (readerEvent) => {
@@ -83,7 +83,7 @@ export class ItemCreatePage {
       this.form.patchValue({ 'map': imageData });
     };
 
-    console.log("files: ", event.target.files[0]);
+    // console.log("files: ", event.target.files[0]);
     reader.readAsDataURL(event.target.files[0]);
   }
 

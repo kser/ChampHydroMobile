@@ -27,7 +27,7 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
   user: any;
-  district64Images: String[];
+  // district64Images: String[];
 
   constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
