@@ -6,6 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DistrictMasterPage } from '../pages/district-master/district-master';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 
+import { DistrictService }  from '../providers/district.service';
+
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public districtService: DistrictService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -25,6 +28,8 @@ export class MyApp {
       { title: 'Districts', component: DistrictMasterPage },
       { title: 'User Info', component: UserDetailsPage },
     ];
+
+    districtService.load();
 
   }
 

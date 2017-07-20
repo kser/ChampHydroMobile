@@ -10,7 +10,9 @@ export class DistrictService {
   districts: District[] = [];
   user: any = {name: "", email: ""};
   
-  constructor(public storage: Storage) {
+  constructor(public storage: Storage) { }
+
+  load() {
     // this.districts=DISTRICTS;
     this.storage.get('districts').then((districts) => {
       if(districts) this.districts = districts;
