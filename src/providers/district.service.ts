@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
 
-import { DISTRICTS } from '../mocks/base64-districts';
+import { DISTRICTS } from '../mocks/mock-districts';
 
 @Injectable()
 export class DistrictService {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, LoadingController  } from 'ionic-angular';
 // import { File } from '@ionic-native/file';
 
 import { DistrictService }  from '../../providers/district.service';
@@ -27,9 +27,10 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
   user: any;
+  loading: any;
   // district64Images: String[];
 
-  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public reportService: ReportService, public districtService: DistrictService) {
+  constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
     this.user = districtService.getUser();
     
@@ -83,17 +84,29 @@ export class DistrictDetailPage {
   buildReport() {
     // console.log(this.selectedDistrict);
 
+    this.presentLoading();
+
     this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser())
       .then((pdf) => {
         // let blob = new Blob([pdf], { type: 'application/pdf' });
         let pdfUrl = { pdfUrl: pdf };  //URL.createObjectURL(blob) };
         let modal = this.modalCtrl.create(ViewPdf, pdfUrl);
 
+        this.loading.dismiss();
+
         // console.log(pdfUrl);
 
         // Display the modal view
         modal.present();
       });
+  }
+
+  presentLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Building Report...'
+    });
+    
+    this.loading.present();
   }
 
   ionViewDidLoad() {

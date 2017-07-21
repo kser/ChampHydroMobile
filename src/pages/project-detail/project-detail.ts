@@ -142,9 +142,6 @@ export class ProjectDetailPage {
     }
   }
 
-
-
-  
   
   //MODAL ACTIONS
   /**
