@@ -94,8 +94,6 @@ export class DistrictDetailPage {
 
         this.loading.dismiss();
 
-        // console.log(pdfUrl);
-
         // Display the modal view
         modal.present();
       });
