@@ -16,13 +16,13 @@ export class ReportService {
     }
     public base64Images: String[] = [];
 
-    public buildPdf(district, user) {
+    public buildPdf(district, user, base64Map) {
 
         if(user.name) this.reportData.Rep = user.name;
         if(user.email) this.reportData.Email = user.email;
 
         return new Promise((resolve, reject) => {
-            var dd = this.createDocumentDefinition(district);
+            var dd = this.createDocumentDefinition(district, base64Map);
             //add font
             pdfMake.fonts = {
                 'TimesNewRoman': {
@@ -42,7 +42,7 @@ export class ReportService {
     }
     
 
-    private createDocumentDefinition(district) {
+    private createDocumentDefinition(district, base64Map) {
 
         var getContent = () => {
             let projContent = [];
@@ -53,7 +53,8 @@ export class ReportService {
                 { text: district.longName, style: 'header', margin: [50, 0, 50, 20] },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
-                { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
+                // convert to base64 project map here?
+                { image: base64Map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
 
                 { text: '13226 Kaltenbrun  ~  Houston, Texas  77086  ~  Phone: 281-744-9538  ~  Fax: 281-445-2349', style: 'info', margin: [0,0,0,10]},
                 { text: "Account Representattive: " + this.reportData.Rep + "  ~ Email: " + this.reportData.Email, style: 'info' },
@@ -70,12 +71,13 @@ export class ReportService {
 
                 //Project Map
                 if(district.projects[i].map){
+                    //convert to base64 project map here?
                 projContent.push(
-                        { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                        { image: base64Map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
                     );
                 } else if (district.map) { //default to district map
                     projContent.push(
-                        { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                        { image: base64Map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
                     );
                 }
 
