@@ -59,12 +59,12 @@ export class DistrictService {
 
   add(district: District) {
     this.districts.push(new District(district.name, district.map));
-    this.saveDistricts();
+    // this.saveDistricts();
   }
 
   delete(district: District) {
     this.districts.splice(this.districts.indexOf(district), 1);
-    this.saveDistricts();
+    // this.saveDistricts();
   }
 
 }
