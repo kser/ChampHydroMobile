@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
 
-import { DISTRICTS } from '../mocks/base64-districts';
+// import { DISTRICTS } from '../mocks/base64-districts';
 
 @Injectable()
 export class DistrictService {
@@ -13,10 +13,10 @@ export class DistrictService {
   constructor(public storage: Storage) { }
 
   load() {
-    this.districts=DISTRICTS;
-    // this.storage.get('districts').then((districts) => {
-    //   if(districts) this.districts = districts;
-    // });
+    // this.districts=DISTRICTS;
+    this.storage.get('districts').then((districts) => {
+      if(districts) this.districts = districts;
+    });
 
     // get user info from storage
     this.storage.get('user').then((user) => {
@@ -59,12 +59,12 @@ export class DistrictService {
 
   add(district: District) {
     this.districts.push(new District(district.name, district.map));
-    // this.saveDistricts();
+    this.saveDistricts();
   }
 
   delete(district: District) {
     this.districts.splice(this.districts.indexOf(district), 1);
-    // this.saveDistricts();
+    this.saveDistricts();
   }
 
 }

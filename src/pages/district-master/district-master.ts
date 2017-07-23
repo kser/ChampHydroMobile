@@ -22,6 +22,7 @@ export class DistrictMasterPage {
    * The view loaded, let's query our districtService for the list
    */
   ionViewDidLoad() {
+    this.currentDistricts = this.districtService.query() ;
   }
 
   /**
