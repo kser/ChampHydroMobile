@@ -3,7 +3,8 @@ import { Storage } from '@ionic/storage';
 
 import { District } from '../models/district';
 
-import { DISTRICTS } from '../mocks/base64-districts';
+import { JOSH_DISTRICTS } from '../mocks/josh-districts';
+import { JERRY_DISTRICTS } from '../mocks/jerry-districts';
 
 @Injectable()
 export class DistrictService {
@@ -13,7 +14,8 @@ export class DistrictService {
   constructor(public storage: Storage) { }
 
   load() {
-    this.districts=DISTRICTS;
+    this.districts=JOSH_DISTRICTS.concat(JERRY_DISTRICTS);
+    // this.districts.concat(JERRY_DISTRICTS);
     // this.storage.get('districts').then((districts) => {
     //   if(districts) this.districts = districts;
     // });
