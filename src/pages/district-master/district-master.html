@@ -16,6 +16,14 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="getItems()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 

@@ -13,6 +13,7 @@ import { DistrictService }  from '../../providers/district.service';
 })
 export class DistrictMasterPage {
   currentDistricts: District[];
+  queryText = '';
 
   constructor(public navCtrl: NavController, public districtService: DistrictService, public modalCtrl: ModalController) {
     this.currentDistricts = this.districtService.query() ;
@@ -22,6 +23,17 @@ export class DistrictMasterPage {
    * The view loaded, let's query our districtService for the list
    */
   ionViewDidLoad() {
+  }
+
+
+  getItems() {
+    // if (!this.queryText || !this.queryText.trim()) {
+    //   this.currentDistricts = [];
+    //   return;
+    // }
+    this.currentDistricts = this.districtService.query({
+      name:this.queryText
+    });
   }
 
   /**
