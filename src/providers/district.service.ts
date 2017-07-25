@@ -5,6 +5,7 @@ import { District } from '../models/district';
 
 import { JOSH_DISTRICTS } from '../mocks/josh-districts';
 import { JERRY_DISTRICTS } from '../mocks/jerry-districts';
+import { MIKE_DISTRICTS } from '../mocks/mike-districts';
 
 @Injectable()
 export class DistrictService {
@@ -14,7 +15,7 @@ export class DistrictService {
   constructor(public storage: Storage) { }
 
   load() {
-    this.districts=JOSH_DISTRICTS.concat(JERRY_DISTRICTS);
+    this.districts=JOSH_DISTRICTS.concat(JERRY_DISTRICTS).concat(MIKE_DISTRICTS);
     this.orderDistricts();
     // this.districts.concat(JERRY_DISTRICTS);
     // this.storage.get('districts').then((districts) => {
