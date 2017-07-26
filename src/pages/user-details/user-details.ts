@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 // import { NavController, NavParams } from 'ionic-angular';
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { NavController, ToastController } from 'ionic-angular';
+
+import { DistrictMasterPage } from '../district-master/district-master';
+
 
 import { DistrictService }  from '../../providers/district.service';
 
@@ -20,7 +24,12 @@ export class UserDetailsPage {
   private userForm : FormGroup;
   public user = {name: "", email: ""};
 
-  constructor( private formBuilder: FormBuilder, public dataService: DistrictService ) {
+  constructor(
+    public navCtrl: NavController, 
+    private formBuilder: FormBuilder, 
+    public dataService: DistrictService ,
+    public toastCtrl: ToastController
+  ) {
     this.user = this.dataService.getUser();
 
     this.createForm();
@@ -44,6 +53,14 @@ export class UserDetailsPage {
   saveForm(){
     this.user = this.userForm.value;
     this.dataService.saveUser(this.userForm.value);
+
+    let toast = this.toastCtrl.create({
+      message: 'Saved',
+      duration: 3000
+    });
+    toast.present();
+
+    this.navCtrl.setRoot(DistrictMasterPage);
   }
   
   logForm(){

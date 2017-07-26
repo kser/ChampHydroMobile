@@ -17,17 +17,24 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar no-border-top>
+  <!-- <ion-toolbar no-border-top>
     <ion-searchbar color="primary"
+                   animated = "true"
                    [(ngModel)]="queryText"
                    (ionInput)="getItems()"
                    placeholder="Search">
     </ion-searchbar>
-  </ion-toolbar>
+  </ion-toolbar> -->
 </ion-header>
 
 
 <ion-content>
+  <ion-searchbar color="primary"
+                   animated = "true"
+                   [(ngModel)]="queryText"
+                   (ionInput)="getItems()"
+                   placeholder="Search">
+    </ion-searchbar>
   <div class="grey" text-center *ngIf="currentDistricts.length === 0">
     <ion-icon name="md-image"></ion-icon>
     <!-- <img height="75px" src="assets/img/CHL_logo_BW.jpg"> -->
