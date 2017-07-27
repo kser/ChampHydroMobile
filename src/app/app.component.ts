@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DistrictMasterPage } from '../pages/district-master/district-master';
 import { UserDetailsPage } from '../pages/user-details/user-details';
+import { SupportPage } from '../pages/support/support';
 
 import { DistrictService }  from '../providers/district.service';
 
@@ -27,6 +28,7 @@ export class MyApp {
     this.pages = [
       { title: 'Districts', component: DistrictMasterPage },
       { title: 'User Info', component: UserDetailsPage },
+      { title: 'Support', component: SupportPage },
     ];
 
     districtService.load();

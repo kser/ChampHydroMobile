@@ -1,0 +1,44 @@
+<ion-header>
+
+	<ion-navbar>
+		<button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+		<ion-title>Support</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="logo">
+		<img src="assets/img/CHL_logo.jpg" alt="Champions Logo">
+	</div>
+
+	<form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">
+		<ion-list no-lines>
+      <ion-item>
+        <!-- <ion-icon name="pin" item-start></ion-icon> -->
+        <ion-label stacked color="primary">Subject</ion-label>
+        <ion-select>
+          <ion-option value="howto" selected>Question on How to Use</ion-option>
+          <ion-option value="data">Report a Account Data Issue</ion-option>
+          <ion-option value="bug">Report a Bug in the App</ion-option>
+          <ion-option value="thanks">Just Say Thanks!</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+				<ion-label stacked color="primary">Enter your support message below</ion-label>
+				<ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>
+			</ion-item>
+		</ion-list>
+
+		<p ion-text [hidden]="supportQuestion.valid || submitted === false" color="danger" padding-left>
+			Support message is required
+		</p>
+
+		<div padding>
+			<button ion-button block type="submit">Submit</button>
+		</div>
+	</form>
+</ion-content>

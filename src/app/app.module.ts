@@ -19,6 +19,7 @@ import { ProjectDetailPage } from '../pages/project-detail/project-detail';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 import { ViewPdf } from '../pages/view-pdf/view-pdf';
 import { UserDetailsPage } from '../pages/user-details/user-details';
+import { SupportPage } from '../pages/support/support';
 
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 
@@ -35,7 +36,8 @@ import { ReportService }  from '../providers/report-service';
     ItemCreatePage,
     ViewPdf,
     UserDetailsPage,
-    PdfViewerComponent
+    PdfViewerComponent,
+    SupportPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { ReportService }  from '../providers/report-service';
     ProjectDetailPage,
     ItemCreatePage,
     UserDetailsPage,
-    ViewPdf
+    ViewPdf,
+    SupportPage
   ],
   providers: [ DistrictService, Camera, StatusBar, SplashScreen, File, ReportService, SocialSharing, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
