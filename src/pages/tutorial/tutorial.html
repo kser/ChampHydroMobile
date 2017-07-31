@@ -1,0 +1,50 @@
+<ion-header no-border>
+  <ion-navbar>
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button (click)="startApp()" color="primary">Skip</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager>
+
+    <ion-slide>
+      <img src="assets/img/chl-slidebox-img-1.png" class="slide-image"/>
+      <h2 class="slide-title">
+        Welcome to <b>CHL Reporting App</b>
+      </h2>
+      <p>
+        The <b>Champions Reporting App</b> is a data gathering and report generator tool for reps and their accounts.
+      </p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/chl-slidebox-img-2.png" class="slide-image"/>
+      <h2 class="slide-title" >How to Use It?</h2>
+      <p>Simply find the Account you want to build a report for and select it to start building a report.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/chl-slidebox-img-3.png" class="slide-image"/>
+      <h2 class="slide-title">Gather the Project Data</h2>
+      <p>For each project in the account, add photos and project updates / comments.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/chl-slidebox-img-1.png" class="slide-image"/>
+      <h2 class="slide-title">Click Build, Then Email It!</h2>
+      <p>Once all projects have data input, click the <b>Build Report</b> button to get a preview. Then email the report right from your app.</p>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/ica-slidebox-img-3.png" class="slide-image"/>
+      <h2 class="slide-title">Ready to Start?</h2>
+      <button ion-button icon-end large clear (click)="startApp()">
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>
