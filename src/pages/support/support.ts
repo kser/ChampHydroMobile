@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 
 import { AlertController, NavController, ToastController } from 'ionic-angular';
 
+import { SocialSharing } from '@ionic-native/social-sharing';
+
+
 /**
  * Generated class for the SupportPage page.
  *
@@ -17,11 +20,13 @@ export class SupportPage {
 
   submitted: boolean = false;
   supportMessage: string;
+  subjectSelect: any;
 
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private socialSharing: SocialSharing,
   ) { }
 
   ionViewDidLoad() {
@@ -35,11 +40,34 @@ export class SupportPage {
       this.supportMessage = '';
       this.submitted = false;
 
-      let toast = this.toastCtrl.create({
-        message: 'Your support request has been sent.',
-        duration: 3000
+      this.socialSharing.canShareViaEmail() //TODO: emailing from non-cordova device
+      .then(() =>
+      {
+        this.socialSharing.shareViaEmail(this.supportMessage, this.subjectSelect, null, null, null, null) //TODO: sendTo email
+        .then((data) =>
+        {
+            console.log('Shared via Email');
+            let toast = this.toastCtrl.create({
+              message: 'Your support request has been sent. ',
+              duration: 3000
+            });
+            toast.present();
+          })
+        .catch((err) =>
+        {
+            console.log('Not able to be shared via Email');
+            let toast = this.toastCtrl.create({
+              message: 'Not able to be sent via Email. ',
+              duration: 3000
+            });
+            toast.present();
+        });
+      })
+      .catch((err) =>
+      {
+        console.log('Sharing via Email NOT enabled');
       });
-      toast.present();
+
     }
   }
 

@@ -20,11 +20,11 @@
       <ion-item>
         <!-- <ion-icon name="pin" item-start></ion-icon> -->
         <ion-label stacked color="primary">Subject</ion-label>
-        <ion-select>
-          <ion-option value="howto" selected>Question on How to Use</ion-option>
-          <ion-option value="data">Report a Account Data Issue</ion-option>
-          <ion-option value="bug">Report a Bug in the App</ion-option>
-          <ion-option value="thanks">Just Say Thanks!</ion-option>
+        <ion-select required name="subjectSelect" [(ngModel)]="subjectSelect">
+          <ion-option value="App Usage Question">App Usage Question</ion-option>
+          <ion-option value="Report an Account Data Issue">Report an Account Data Issue</ion-option>
+          <ion-option value="Report a Bug in the App">Report a Bug in the App</ion-option>
+          <ion-option value="Other Feedback">Other Feedback</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
