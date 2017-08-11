@@ -21,7 +21,7 @@ export class SupportPage {
   submitted: boolean = false;
   supportMessage: string;
   subjectSelect: any;
-  sendTo:string[] = ["champions@ksertronics.com", "jfort@champhydro.com"];
+  sendTo:string[] = ["bugs@ksertronics.com", "jfort@champhydro.com"];
 
   constructor(
     public navCtrl: NavController,
@@ -43,7 +43,7 @@ export class SupportPage {
       this.socialSharing.canShareViaEmail() //TODO: emailing from non-cordova device
       .then(() =>
       {
-        this.socialSharing.shareViaEmail(this.supportMessage, this.subjectSelect, this.sendTo, null, null, null) //TODO: sendTo email
+        this.socialSharing.shareViaEmail(this.supportMessage, "CHAMPIONS: " + this.subjectSelect, this.sendTo, null, null, null) //TODO: sendTo email
         .then((data) =>
         {
             console.log('Shared via Email');
