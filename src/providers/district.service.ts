@@ -19,10 +19,7 @@ export class DistrictService {
   load() {
     this.districts=JOSH_DISTRICTS.concat(JERRY_DISTRICTS).concat(MIKE_DISTRICTS).concat(PHIL_DISTRICTS);
     this.orderDistricts();
-    // this.districts.concat(JERRY_DISTRICTS);
-    // this.storage.get('districts').then((districts) => {
-    //   if(districts) this.districts = districts;
-    // });
+
 
     // get user info from storage
     this.storage.get('user').then((user) => {
