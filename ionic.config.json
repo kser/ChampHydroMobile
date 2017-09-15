@@ -1,5 +1,8 @@
 {
   "name": "Champions",
-  "app_id": "3a7fc6ea",
-  "type": "ionic-angular"
+  "app_id": "6a53c7d9",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

@@ -32,7 +32,9 @@ export class ReportService {
                     bolditalics: 'times new roman bold italic.ttf'
                 }
             }
+            console.log("creating pdf");
             var pdf = pdfMake.createPdf(dd);
+            console.log("created pdf");
 
             pdf.getDataUrl((data) => {
                 resolve(data);
@@ -53,7 +55,7 @@ export class ReportService {
                 { text: district.longName, style: 'header', margin: [50, 0, 50, 20] },
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
-                // convert to base64 project map here?
+                
                 { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
 
                 { text: '13226 Kaltenbrun  ~  Houston, Texas  77086  ~  Phone: 281-744-9538  ~  Fax: 281-445-2349', style: 'info', margin: [0,0,0,10]},
@@ -98,6 +100,7 @@ export class ReportService {
                     // console.log("Photo: ", district.projects[i].photos[j].photo);
                     if(district.projects[i].photos[j].photo) {
                         projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                        console.log("photo",j);
                     }
                 }
 
