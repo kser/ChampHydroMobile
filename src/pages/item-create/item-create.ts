@@ -25,7 +25,7 @@ export class ItemCreatePage {
   form: FormGroup;
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, private formBuilder: FormBuilder, private camera:Camera) {
-    this.form = formBuilder.group({
+    this.form = this.formBuilder.group({
       map: [''],
       name: ['', Validators.required],
       // projects: this.formBuilder.array([
