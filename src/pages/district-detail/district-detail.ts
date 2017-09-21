@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, LoadingController  } from 'ionic-angular';
-// import { File } from '@ionic-native/file';
 
 import { DistrictService }  from '../../providers/district.service';
 import { ReportService }  from '../../providers/report-service';
@@ -27,8 +26,6 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
   user: any;
-  loading: any;
-  // district64Images: String[];
 
   constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
@@ -68,48 +65,44 @@ export class DistrictDetailPage {
     this.selectedDistrict.removeProject(project);
   }
 
-
-  // getBase64ImagesFromDistrict(district) : Promise<String> {
-  //       var file = new File();
-  //       console.log("filepath: ", district.map.substring(0,district.map.lastIndexOf("/") + 1));
-  //       console.log("filename: ", district.map.substring(district.map.lastIndexOf("/") + 1));
-  //       return file.readAsDataURL(district.map.substring(0,district.map.lastIndexOf("/")+1), district.map.substring(district.map.lastIndexOf("/") + 1));//.then(imageData => this.district64Images[0] = imageData);
-  //     }
-
  /**
    * Call ReportService to build the PDF report
    */
   buildReport() {
-    // console.log(this.selectedDistrict);
 
-    this.presentLoading();
+    // this.presentLoading();
+    let loader = this.loadingCtrl.create({
+      content: 'Building Report...'
+    });
 
-    // this.getBase64ImagesFromDistrict(this.selectedDistrict)
-    //   .then((base64Map) => {
-
+    loader.present().then(() => {
       this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser())
         .then((pdf) => {
           let pdfUrl = { pdfUrl: pdf };  
           let modal = this.modalCtrl.create(ViewPdf, pdfUrl);
 
-          this.loading.dismiss();
-
           // Display the modal view
           modal.present();
-        // });
+
+          loader.dismiss();
+
       });
+    });
+
+
+      
   }
 
-  presentLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Building Report...'
-    });
+  // presentLoading() {
+  //   this.loading = this.loadingCtrl.create({
+  //     content: 'Building Report...'
+  //   });
     
-    this.loading.present();
-  }
+  //   console.log("Loading spinner present");
+  //   this.loading.present();
+  // }
 
   ionViewDidLoad() {
-    //console.log(this.selectedDistrict);
   }
 
 }

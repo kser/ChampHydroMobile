@@ -32,9 +32,7 @@ export class ReportService {
                     bolditalics: 'times new roman bold italic.ttf'
                 }
             }
-            console.log("creating pdf");
             var pdf = pdfMake.createPdf(dd);
-            console.log("created pdf");
 
             pdf.getDataUrl((data) => {
                 resolve(data);
@@ -100,7 +98,6 @@ export class ReportService {
                     // console.log("Photo: ", district.projects[i].photos[j].photo);
                     if(district.projects[i].photos[j].photo) {
                         projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
-                        console.log("photo",j);
                     }
                 }
 
