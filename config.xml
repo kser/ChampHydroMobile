@@ -64,13 +64,6 @@
     <plugin name="cordova-plugin-console" spec="^1.0.5" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-file" spec="^4.3.3" />
-    <plugin name="cordova-plugin-ionic" spec="^1.1.9">
-        <variable name="APP_ID" value="6a53c7d9" />
-        <variable name="CHANNEL_NAME" value="Master" />
-        <variable name="UPDATE_METHOD" value="auto" />
-        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
-        <variable name="MAX_STORE" value="2" />
-    </plugin>
     <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
@@ -78,4 +71,11 @@
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <engine name="ios" spec="~4.3.1" />
+    <plugin name="cordova-plugin-ionic" spec="~1.1.9">
+        <variable name="APP_ID" value="6a53c7d9" />
+        <variable name="CHANNEL_NAME" value="Production" />
+        <variable name="UPDATE_METHOD" value="background" />
+        <variable name="UPDATE_API" value="https://api.ionicjs.com" />
+        <variable name="MAX_STORE" value="2" />
+    </plugin>
 </widget>
