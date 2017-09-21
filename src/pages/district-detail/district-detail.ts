@@ -70,7 +70,6 @@ export class DistrictDetailPage {
    */
   buildReport() {
 
-    // this.presentLoading();
     let loader = this.loadingCtrl.create({
       content: 'Building Report...'
     });
@@ -87,20 +86,8 @@ export class DistrictDetailPage {
           loader.dismiss();
 
       });
-    });
-
-
-      
+    });   
   }
-
-  // presentLoading() {
-  //   this.loading = this.loadingCtrl.create({
-  //     content: 'Building Report...'
-  //   });
-    
-  //   console.log("Loading spinner present");
-  //   this.loading.present();
-  // }
 
   ionViewDidLoad() {
   }
