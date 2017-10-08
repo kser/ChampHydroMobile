@@ -48,6 +48,8 @@
     </ion-list>
 
   <h2>Photos</h2>
+  <!-- Easy Photo Add button -->
+  <button ion-button small outline (click)="addDefaultPhoto()" type="button">Add Default Photo</button>
   <!-- Photos array -->
      <ion-list formArrayName="photos">
        <ion-item *ngFor="let photo of photos.controls; let i=index" [formGroupName]="i">
