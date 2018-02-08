@@ -43,7 +43,7 @@ export class MyApp {
       });
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Districts', component: DistrictMasterPage },
+      { title: 'Accounts', component: DistrictMasterPage },
       { title: 'User Info', component: UserDetailsPage },
       { title: 'Support', component: SupportPage },
       { title: 'Show Tutorial', component: TutorialPage },
