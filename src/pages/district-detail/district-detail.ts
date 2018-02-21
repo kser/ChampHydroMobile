@@ -8,6 +8,7 @@ import { District } from '../../models/district';
 import { Project } from '../../models/project';
 
 import { ProjectDetailPage }  from '../project-detail/project-detail';
+import { ReportSettingsPage }  from '../report-settings/report-settings';
 import { ItemCreatePage }  from '../item-create/item-create';
 import { ViewPdf }  from '../view-pdf/view-pdf';
 
@@ -26,6 +27,7 @@ export class DistrictDetailPage {
   selectedDistrict: District;
   projects: Project[];
   user: any;
+  reportDate: String;
 
   constructor(public navCtrl: NavController, navParams: NavParams, public modalCtrl: ModalController, public loadingCtrl: LoadingController, public reportService: ReportService, public districtService: DistrictService) {
     this.selectedDistrict = navParams.get('district');
@@ -65,6 +67,22 @@ export class DistrictDetailPage {
     this.selectedDistrict.removeProject(project);
   }
 
+  /**
+   * Call ReportService to build the PDF report
+   */
+  openSettingsModal() {
+
+    let dateModal = this.modalCtrl.create(ReportSettingsPage);
+
+    dateModal.onDidDismiss(data => {
+      this.reportDate = data;
+      console.log(this.reportDate);
+      this.buildReport();
+    });
+
+    dateModal.present();
+  }
+
  /**
    * Call ReportService to build the PDF report
    */
@@ -75,7 +93,7 @@ export class DistrictDetailPage {
     });
 
     loader.present().then(() => {
-      this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser())
+      this.reportService.buildPdf(this.selectedDistrict, this.districtService.getUser(), this.reportDate)
         .then((pdf) => {
           let pdfUrl = { pdfUrl: pdf };  
           let modal = this.modalCtrl.create(ViewPdf, pdfUrl);

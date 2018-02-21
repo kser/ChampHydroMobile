@@ -16,10 +16,11 @@ export class ReportService {
     }
     // public base64Images: String[] = [];
 
-    public buildPdf(district, user) {
+    public buildPdf(district, user, date) {
 
         if(user.name) this.reportData.Rep = user.name;
         if(user.email) this.reportData.Email = user.email;
+        if(date) this.reportData.Date = date;
 
         return new Promise((resolve, reject) => {
             var dd = this.createDocumentDefinition(district);
@@ -111,14 +112,14 @@ export class ReportService {
             footer: (currentPage, pageCount) => { 
                 return {
                     columns: [
-                        {
-                            alignment: 'left',
-                            text: this.reportData.ShortDate,
-                            margin: [20,0,0,0]
-                        },
+                        // {
+                        //     alignment: 'left',
+                        //     text: this.reportData.ShortDate,
+                        //     margin: [20,0,0,0]
+                        // },
                         {
                             alignment: 'right',
-                            text: "Page " + currentPage.toString() + ' of ' + pageCount,
+                            text: currentPage.toString(),
                             margin: [0,0,20,0]
                         }
                     ]

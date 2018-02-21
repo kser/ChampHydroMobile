@@ -49,5 +49,5 @@
 
 <ion-footer>
   <p text-center><b>Your Info:</b> {{this.user.name}} <{{this.user.email}}> </p>
-  <button ion-button block [disabled]="selectedDistrict.projects.length === 0" (click)="buildReport()">Build Report</button>
+  <button ion-button block [disabled]="selectedDistrict.projects.length === 0" (click)="openSettingsModal()">Compile Report</button>
 </ion-footer>
