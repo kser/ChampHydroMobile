@@ -1,13 +1,22 @@
+// import { ProjPage } from './projPage';
+
 export class Project {
       
     constructor(
         public name: string = "", 
-        public map: string = "", 
-        public bullet1: string = "",    //Todo: change to array of strings
+        public map: string = "",
+        public showMap: boolean = false, 
+        public bullet1: string = "",
         public bullet2: string = "", 
         public bullet3: string = "", 
         public photos: string[] = [],
         public lastUpdate: Date = new Date()) {}
+
+
+    toggleProjectMap(showMap) {
+        this.showMap = showMap;
+    }
+
 
     setBullet1(newBullet1) {
         this.bullet1 = newBullet1;
