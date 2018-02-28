@@ -71,37 +71,39 @@ export class ReportService {
                     );
 
                 //Project Map
-                if(district.projects[i].map){
-                    //convert to base64 project map here?
-                projContent.push(
-                        { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
-                    );
-                } else if (district.map) { //default to district map
+                if(district.projects[i].showMap){
+                    if(district.projects[i].map){
+                        //convert to base64 project map here?
                     projContent.push(
-                        { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
-                    );
-                }
-
-                //Bullet Point Comments
-                // if(district.projects[i].bullet1 || district.projects[i].bullet2 || district.projects[i].bullet3) {
-                                projContent.push(
-                                    { ul: [
-                                        {text: district.projects[i].bullet1, margin: [0, 0, 0, 10]},
-                                        {text: district.projects[i].bullet2, margin: [0, 0, 0, 10]},
-                                        {text: district.projects[i].bullet3, margin: [0, 0, 0, 10]}
-                                    ],
-                                        pageBreak: 'after'
-                                    });
-                            // }
-
-                //Photos
-                for(let j=0; j < district.projects[i].photos.length; j++){
-                    // console.log("Photo: ", district.projects[i].photos[j].photo);
-                    if(district.projects[i].photos[j].photo) {
-                        projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                            { image: district.projects[i].map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                        );
+                    } else if (district.map) { //default to district map
+                        projContent.push(
+                            { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                        );
                     }
                 }
+                
 
+                //Bullet Point Comments
+                projContent.push(
+                    { ul: [
+                        {text: district.projects[i].bullet1, margin: [0, 0, 0, 10]},
+                        {text: district.projects[i].bullet2, margin: [0, 0, 0, 10]},
+                        {text: district.projects[i].bullet3, margin: [0, 0, 0, 10]}
+                    ],
+                        // pageBreak: 'after'
+                    });
+
+                //Photos
+                if(district.projects[i].photos.length > 0){
+                    for(let j=0; j < district.projects[i].photos.length; j++){
+                        // console.log("Photo: ", district.projects[i].photos[j].photo);
+                        if(district.projects[i].photos[j].photo) {
+                            projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                        }
+                    }
+                }
             }
 
             return projContent;

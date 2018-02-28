@@ -5,7 +5,7 @@ export class Project {
     constructor(
         public name: string = "", 
         public map: string = "",
-        public showMap: boolean = true, 
+        public showMap: boolean = false, 
         public bullet1: string = "",
         public bullet2: string = "", 
         public bullet3: string = "", 
