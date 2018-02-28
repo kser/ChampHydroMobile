@@ -30,9 +30,16 @@
 
 
 <ion-content padding>
+  <h2>Project Map</h2>
+  <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="saveProject()">
+    <ion-list>
+      <ion-item>
+          <ion-label>Show Project Map</ion-label>
+          <ion-toggle formControlName="showMap"></ion-toggle>
+        </ion-item>
+  
   <h2>Comments</h2>
-    <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="saveProject()">
-      <ion-list>
+    
       <ion-item>
         <ion-label floating>Bullet #1</ion-label>
         <ion-input type="text" formControlName="bullet1"></ion-input>

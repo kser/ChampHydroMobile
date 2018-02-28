@@ -33,6 +33,7 @@ export class District {
       }
 
       if(index > -1) {
+        this.projects[index].toggleProjectMap(project.showMap);
         this.projects[index].setBullet1(project.bullet1);
         this.projects[index].setBullet2(project.bullet2);
         this.projects[index].setBullet3(project.bullet3);

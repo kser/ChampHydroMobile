@@ -38,7 +38,8 @@ export class ProjectDetailPage {
 
     createForm() {
     this.projectForm = this.fb.group({
-      name: [this.selectedProject.name ],
+      name: [this.selectedProject.name],
+      showMap: [this.selectedProject.showMap ],
       bullet1: [this.selectedProject.bullet1],
       bullet2: [this.selectedProject.bullet2],
       bullet3: [this.selectedProject.bullet3],
@@ -158,6 +159,7 @@ export class ProjectDetailPage {
   save() {
     if(!this.projectForm.valid) { return; }
     this.viewCtrl.dismiss(this.projectForm.value);
+    console.log(this.projectForm.value);
   }
 
 }
