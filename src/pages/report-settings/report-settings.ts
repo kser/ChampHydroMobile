@@ -23,7 +23,15 @@ export class ReportSettingsPage {
     console.log('ionViewDidLoad ReportSettingsPage');
   }
 
-  closeModal() {
+  //MODAL ACTIONS
+  /**
+   * The user cancelled, so we dismiss without sending data back.
+   */
+  cancel() {
+    this.viewCtrl.dismiss();
+  }
+
+  buildReport() {
     let dateFormatted:string = new Date(this.reportDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
     this.viewCtrl.dismiss(dateFormatted);
   }

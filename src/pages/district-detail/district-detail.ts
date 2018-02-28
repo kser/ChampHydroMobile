@@ -74,10 +74,12 @@ export class DistrictDetailPage {
 
     let dateModal = this.modalCtrl.create(ReportSettingsPage);
 
-    dateModal.onDidDismiss(data => {
-      this.reportDate = data;
-      console.log(this.reportDate);
-      this.buildReport();
+    dateModal.onDidDismiss(date => {
+      if(date){
+        this.reportDate = date;
+        this.buildReport();
+      }
+      
     });
 
     dateModal.present();
