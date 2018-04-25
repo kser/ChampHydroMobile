@@ -67,7 +67,7 @@ export class ReportService {
 
                 //Project Name
                 projContent.push( 
-                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,20]},
+                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,0]},
                     );
 
                 //Project Map
