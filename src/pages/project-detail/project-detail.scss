@@ -1,12 +1,33 @@
 page-project-detail {
 
-  ion-icon[name=images] {	
+  ion-item ion-icon[name=images] {	
       border: #FFFFFF 2px solid;    
       border-radius: 50%;
       background-color: #2155AA;    
-      font-size: 35px;
-      padding: 15px;
+      font-size: 20px;
+      padding: 10px;
       color: #FFFFFF;	
   }
+
+  button[ion-fab] {
+    overflow: visible;
+    position: relative;
+
+    ion-label {
+        position: absolute;
+        top: -8px;
+        left: 40px;
+
+        color: white;
+        background-color: rgba(0,0,0,0.7);
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}
+
+  .fab {
+    contain: layout;
+}
 
 }

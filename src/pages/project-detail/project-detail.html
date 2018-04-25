@@ -31,46 +31,71 @@
 
 <ion-content padding>
   <h2>Project Map</h2>
-  <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="saveProject()">
+  <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
     <ion-list>
       <ion-item>
           <ion-label>Show Project Map</ion-label>
           <ion-toggle formControlName="showMap"></ion-toggle>
-        </ion-item>
-  
-  <h2>Comments</h2>
-    
-      <ion-item>
-        <ion-label floating>Bullet #1</ion-label>
-        <ion-input type="text" formControlName="bullet1"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Bullet #2</ion-label>
-        <ion-input type="text" formControlName="bullet2"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Bullet #3</ion-label>
-        <ion-input type="text" formControlName="bullet3"></ion-input>
       </ion-item>
     </ion-list>
+  
+    <h2>Pages</h2>
+    <div formArrayName="projPages">
+      <ion-card *ngFor="let page of projPages.controls; let i=index" [formGroupName]="i">
+        <!-- The repeated project pages tempalte -->
+        <ion-card-header>
+          Page {{i + 1}} ({{page.type}})
+        </ion-card-header>
+        <ion-card-content>       
+            <ion-list>
+              <ion-item >
+                <!-- <ion-thumbnail *ngIf="this.projectForm.controls.projPages.controls[i].value.photo1"> -->
+                  <!-- <img [src]=this.projectForm.controls.photos.controls[i].value.photo /> -->
+                  <!-- </ion-thumbnail> -->
+                <!-- <p *ngIf="!this.projectForm.controls.projPages.controls[i].value.photo1">Upload Photo {{i + 1}}</p> -->
+                <p>Upload Photo {{i + 1}}</p>
+                <ion-icon item-left name="images" on-tap="presentActionSheet(i)"></ion-icon>
+              </ion-item>
+            
+              <ion-item>
+                <ion-label floating>Comment</ion-label>
+                <ion-textarea type="text" formControlName="comment1"></ion-textarea>
+              </ion-item>
 
-  <h2>Photos</h2>
-  <!-- Photos array -->
-     <ion-list formArrayName="photos">
-       <ion-item *ngFor="let photo of photos.controls; let i=index" [formGroupName]="i">
-         <ion-thumbnail *ngIf="this.projectForm.controls.photos.controls[i].value.photo">
-            <img [src]=this.projectForm.controls.photos.controls[i].value.photo />
-         </ion-thumbnail>
-         <button ion-button outline color="danger" item-right (click)="removePhoto(i)">Delete</button>
-         <p *ngIf="!this.projectForm.controls.photos.controls[i].value.photo">Upload Photo {{i + 1}}</p>
-         <ion-icon item-left name="images" on-tap="presentActionSheet(i)"></ion-icon>
-       </ion-item>
+              <ion-item >
+                  <p>Upload Photo 2</p>
+                  <ion-icon item-left name="images" on-tap="presentActionSheet(i)"></ion-icon>
+                </ion-item>
+              
+                <ion-item>
+                  <ion-label floating>Comment</ion-label>
+                  <ion-textarea type="text" formControlName="comment2"></ion-textarea>
+                </ion-item>
 
-     </ion-list> 
-
-     <button ion-button small outline (click)="addPhoto()" type="button">Add a another photo</button>
+            </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
 
   </form>
+
+  <ion-fab left bottom #fab>
+      <button ion-fab mini ><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button (click)="addProjPage(fab)" ion-fab>
+          <ion-icon name="barcode"></ion-icon>
+          <ion-label>Panoramics Page</ion-label>
+        </button>
+        <button (click)="addProjPage(fab)" ion-fab>
+          <ion-icon name="albums"></ion-icon>
+          <ion-label>4-Photo Page</ion-label>
+        </button>
+        <button (click)="addProjPage(fab)" ion-fab>
+          <ion-icon name="photos"></ion-icon>
+          <ion-label>2-Photo Page</ion-label>
+        </button>
+      </ion-fab-list>
+    </ion-fab>
 
   <!--<p>projectForm value: {{projectForm.value | json}}</p>-->
 
