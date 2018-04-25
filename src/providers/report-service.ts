@@ -67,7 +67,7 @@ export class ReportService {
 
                 //Project Name
                 projContent.push( 
-                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,30,0,0]},
+                     { text: district.projects[i].name, style: 'header', pageBreak: 'before', margin: [0,0,0,10]},
                     );
 
                 //Project Map
@@ -86,7 +86,8 @@ export class ReportService {
                 
 
                 //Bullet Point Comments
-                projContent.push(
+                if(district.projects[i].bullet1 || district.projects[i].bullet1|| district.projects[i].bullet1) {
+                    projContent.push(
                     { ul: [
                         {text: district.projects[i].bullet1, margin: [0, 0, 0, 10]},
                         {text: district.projects[i].bullet2, margin: [0, 0, 0, 10]},
@@ -94,13 +95,14 @@ export class ReportService {
                     ],
                         // pageBreak: 'after'
                     });
+                }
 
                 //Photos
                 if(district.projects[i].photos.length > 0){
                     for(let j=0; j < district.projects[i].photos.length; j++){
                         // console.log("Photo: ", district.projects[i].photos[j].photo);
                         if(district.projects[i].photos[j].photo) {
-                            projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                            projContent.push({ image: district.projects[i].photos[j].photo, alignment: 'center', width: 475, margin: [0, 0, 0, 10] });
                         }
                     }
                 }
