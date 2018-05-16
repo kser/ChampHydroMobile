@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController, ActionSheetController, FabContainer } from 'ionic-angular';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 import { Project } from '../../models/project'
+// import { Project } from '../../models/data-model';
 
 // import { Camera } from 'ionic-native';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -10,7 +11,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class ProjPage {
   type: string = '2-Photo';
   photo1: string = '';
-  comment1: string = '';
+  comment1: string = 'test comment';
   photo2: string = '';
   comment2:string = '';
 }
@@ -66,6 +67,7 @@ export class ProjectDetailPage {
 
   addProjPage(fab?: FabContainer): void {
     this.projPages.push(this.fb.group(new ProjPage()));
+    console.log(this.projPages);
     fab.close();
   }
 

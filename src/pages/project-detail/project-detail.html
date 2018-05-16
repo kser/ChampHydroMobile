@@ -43,8 +43,8 @@
     <div formArrayName="projPages">
       <ion-card *ngFor="let page of projPages.controls; let i=index" [formGroupName]="i">
         <!-- The repeated project pages tempalte -->
-        <ion-card-header>
-          Page {{i + 1}} ({{page.type}})
+        <ion-card-header >
+          Page {{i + 1}} ({{type}})
         </ion-card-header>
         <ion-card-content>       
             <ion-list>
