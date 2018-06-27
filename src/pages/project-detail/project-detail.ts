@@ -3,18 +3,11 @@ import { NavController, NavParams, ViewController, ActionSheetController, FabCon
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 import { Project } from '../../models/project'
+import { ProjPage } from '../../models/project'
 // import { Project } from '../../models/data-model';
 
 // import { Camera } from 'ionic-native';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
-export class ProjPage {
-  type: string = '2-Photo';
-  photo1: string = '';
-  comment1: string = 'test comment';
-  photo2: string = '';
-  comment2:string = '';
-}
 
 @Component({
   selector: 'page-project-detail',
@@ -48,6 +41,7 @@ export class ProjectDetailPage {
     });
 
     //TODO: map array data here
+    this.setProjPages(this.selectedProject.pages);
 
     // Watch the form for changes, and
     this.projectForm.valueChanges.subscribe((v) => {
@@ -55,37 +49,59 @@ export class ProjectDetailPage {
     });
   }
 
+  ngOnChanges() {
+    this.rebuildForm();
+  }
+
+  rebuildForm() {
+    this.projectForm.reset({
+      name: this.selectedProject.name
+    });
+    this.setProjPages(this.selectedProject.pages);
+  }
+
   get projPages(): FormArray{
     return this.projectForm.get('projPages') as FormArray;
   };
 
-  setProjPages(projPages: ProjPage[]) {
-    const projPageFGs = projPages.map(projPage => this.fb.group(projPage));
-    const projPageFormArray = this.fb.array(projPageFGs);
-    this.projectForm.setControl('projPages', projPageFormArray);
+  setProjPages(pages: ProjPage[]) {
+    const projPageFGs = pages.map(page => this.fb.group(page));
+    const pageFormArray = this.fb.array(projPageFGs);
+    this.projectForm.setControl('projPages', pageFormArray);
   }
 
-  addProjPage(fab?: FabContainer): void {
-    this.projPages.push(this.fb.group(new ProjPage()));
+  addProjPage(type, fab?: FabContainer): void {
+    let newPage = new ProjPage();
+    if(type == "panorama") {
+      newPage.type = "Panoramas";
+      this.projPages.push(this.fb.group(newPage));
+    } else if (type == "4photo") {
+      newPage.type = "4-Photo";
+      this.projPages.push(this.fb.group(newPage));
+    } else if (type == "2photo") {
+      newPage.type = "2-Photo";
+      this.projPages.push(this.fb.group(newPage));
+    }
     console.log(this.projPages);
     fab.close();
   }
 
+
   //PICTURE SELECTION
-  presentActionSheet(photoNum) {
+  presentActionSheet(pageNum, photoNum) {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
         {
           text: 'Load from Library',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY, false, photoNum);
+            this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY, false, pageNum, photoNum);
           }
         },
         {
           text: 'Use Camera',
           handler: () => {
-            this.takePicture(this.camera.PictureSourceType.CAMERA, true, photoNum);
+            this.takePicture(this.camera.PictureSourceType.CAMERA, true, pageNum, photoNum);
           }
         },
         {
@@ -97,7 +113,9 @@ export class ProjectDetailPage {
     actionSheet.present();
   }
 
-  takePicture(sourceType, saveToAlbum, photoNum) {
+  takePicture(sourceType, saveToAlbum, pageNum, photoNum) {
+
+    let defaultPhoto = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
     
     let cameraOptions: CameraOptions = {
       quality: 100,
@@ -108,22 +126,44 @@ export class ProjectDetailPage {
       targetHeight: 700,
       correctOrientation: true,
     }
+    console.log(this.projectForm);
     if (this.camera) {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
-        // this.projectForm.value.photos[photoNum].photo = 'data:image/jpg;base64,' +  data;
-        this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue('data:image/jpg;base64,' +  data);
-
+        if(photoNum === 1){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue('data:image/jpg;base64,' +  data);
+        } else if (photoNum ===2 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue('data:image/jpg;base64,' +  data);
+        } else if(photoNum === 3){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue('data:image/jpg;base64,' +  data);
+        } else if (photoNum ===4 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue('data:image/jpg;base64,' +  data);
+        }
       }, (err) => {
         // alert('Unable to load photo');
-        //this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue(defaultPhoto);
+        if(photoNum === 1){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue(defaultPhoto);
+        } else if (photoNum ===2 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue(defaultPhoto);
+        } else if(photoNum === 3){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue(defaultPhoto);
+        } else if (photoNum ===4 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue(defaultPhoto);
+        }
         console.log("Problem Loading Photo");
 
       })
     } else {
         // alert('Camera not available');
-        // this.projectForm.value.photos[photoNum].photo = defaultPhoto; //patchValue({ 'photo': defaultPhoto });
-        //this.projectForm.controls['photos']['controls'][photoNum]['controls']['photo'].patchValue(defaultPhoto);
+        if(photoNum === 1){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue(defaultPhoto);
+        } else if (photoNum ===2 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue(defaultPhoto);
+        } else if(photoNum === 3){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue(defaultPhoto);
+        } else if (photoNum ===4 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue(defaultPhoto);
+        }
         console.log("Camera not available");
     }
   }

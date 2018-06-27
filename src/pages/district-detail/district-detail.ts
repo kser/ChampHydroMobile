@@ -55,6 +55,7 @@ export class DistrictDetailPage {
     addModal.onDidDismiss(project => {
       if (project) {
         this.selectedDistrict.updateProject(project);
+        console.log(this.selectedDistrict);
       }
     })
     addModal.present();
