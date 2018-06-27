@@ -100,16 +100,24 @@ export class ReportService {
                     for(let j=0; j < district.projects[i].pages.length; j++){
                         if(district.projects[i].pages[j].type === '2-Photo'){
                             if(district.projects[i].pages[j].photo1) {
-                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: 425, height: 318, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: 400, height: 300, margin: [0, 0, 0, 10] });
                             }
                             if(district.projects[i].pages[j].comment1) {
-                                projContent.push({ text: district.projects[i].pages[j].comment1, margin: [0, 0, 0, 10] });
+                                projContent.push(
+                                    { ul: [
+                                        {text: district.projects[i].pages[j].comment1, margin: [0, 0, 0, 10]},
+                                    ]
+                                });
                             }
                             if(district.projects[i].pages[j].photo2) {
-                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: 425, height: 318, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: 400, height: 300, margin: [0, 0, 0, 10] });
                             }
                             if(district.projects[i].pages[j].comment2) {
-                                projContent.push({ text: district.projects[i].pages[j].comment2,margin: [0, 0, 0, 10] });
+                                projContent.push(
+                                    { ul: [
+                                        {text: district.projects[i].pages[j].comment2, margin: [0, 0, 0, 10]},
+                                    ]
+                                });
                             }
                         } else if(district.projects[i].pages[j].type === '4-Photo'){
                             if(district.projects[i].pages[j].photo1 && district.projects[i].pages[j].photo2) {

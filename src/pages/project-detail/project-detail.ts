@@ -86,6 +86,12 @@ export class ProjectDetailPage {
     fab.close();
   }
 
+  removePage(i: number) {
+    // remove page from the list
+    const control = <FormArray>this.projectForm.controls['projPages'];
+    control.removeAt(i);
+}
+
 
   //PICTURE SELECTION
   presentActionSheet(pageNum, photoNum) {

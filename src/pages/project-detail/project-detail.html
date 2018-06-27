@@ -45,6 +45,7 @@
         <!-- The repeated project pages template -->
         <ion-card-header >
           Page {{i + 1}} ({{this.projectForm.controls.projPages.controls[i].value.type}})
+          <button ion-button icon-only (click)="removePage(i)"><ion-icon name="close"></ion-icon> </button>
         </ion-card-header>
         <ion-card-content>       
             <ion-list>
