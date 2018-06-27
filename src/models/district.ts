@@ -24,6 +24,7 @@ export class District {
     
     updateProject(project) {
       let index = -1;
+      console.log(project);
 
       for(let i=0; i<this.projects.length; i++){
         if(this.projects[i].name === project.name) {
@@ -34,11 +35,13 @@ export class District {
 
       if(index > -1) {
         this.projects[index].toggleProjectMap(project.showMap);
-        this.projects[index].setBullet1(project.bullet1);
-        this.projects[index].setBullet2(project.bullet2);
-        this.projects[index].setBullet3(project.bullet3);
-        this.projects[index].photos = project.photos;
+        // this.projects[index].setBullet1(project.bullet1);
+        // this.projects[index].setBullet2(project.bullet2);
+        // this.projects[index].setBullet3(project.bullet3);
+        // this.projects[index].photos = project.photos;
+        this.projects[index].pages = project.projPages;
         this.projects[index].updateDate();
+        console.log(this.projects[index]);
       }
       else {
         console.log("No Project Found");
