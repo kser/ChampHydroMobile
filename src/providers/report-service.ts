@@ -58,7 +58,7 @@ export class ReportService {
                 { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
 
                 { text: '13226 Kaltenbrun  ~  Houston, Texas  77086  ~  Phone: 281-744-9538  ~  Fax: 281-445-2349', style: 'info', margin: [0,0,0,10]},
-                { text: "Account Representattive: " + this.reportData.Rep + "  ~ Email: " + this.reportData.Email, style: 'info', pageBreak: 'after' },
+                { text: "Account Representattive: " + this.reportData.Rep + "  ~ Email: " + this.reportData.Email, style: 'info' },
                 );
 
             
@@ -67,7 +67,7 @@ export class ReportService {
 
                 //Project Name
                 projContent.push( 
-                     { text: district.projects[i].name, style: 'header', margin: [0,30,0,20]},
+                     { text: district.projects[i].name, pageBreak: 'before', style: 'header', margin: [0,30,0,20]},
                     );
 
                 //Project Map
@@ -105,7 +105,7 @@ export class ReportService {
                             if(district.projects[i].pages[j].comment1) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment1, margin: [0, 0, 0, 10]},
+                                        {text: district.projects[i].pages[j].comment1, margin: [60, 0, 0, 10]},
                                     ]
                                 });
                             }
@@ -115,7 +115,7 @@ export class ReportService {
                             if(district.projects[i].pages[j].comment2) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment2, margin: [0, 0, 0, 10]},
+                                        {text: district.projects[i].pages[j].comment2, margin: [60, 0, 0, 10]},
                                     ]
                                 });
                             }
@@ -154,7 +154,6 @@ export class ReportService {
 
                         //don't add page break if last page
                         if(j+1 !== district.projects[i].pages.length){
-                            console.log(j+1, '-', district.projects[i].pages.length);
                             projContent.push(
                             { text: '', pageBreak: 'after'}
                         )
