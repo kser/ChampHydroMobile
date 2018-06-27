@@ -147,15 +147,18 @@ export class ReportService {
                                 { ul: [
                                     {text: district.projects[i].pages[j].comment1, margin: [0, 15, 0, 10]},
                                     {text: district.projects[i].pages[j].comment2, margin: [0, 0, 0, 10]},
-                                ],
-                                // pageBreak: 'after'
+                                ]
                             });
                             
                         } //4-photo end
 
-                        projContent.push(
+                        //don't add page break if last page
+                        if(j+1 !== district.projects[i].pages.length){
+                            console.log(j+1, '-', district.projects[i].pages.length);
+                            projContent.push(
                             { text: '', pageBreak: 'after'}
                         )
+                    }
                         
                     } //pages for loop end
                 }
