@@ -57,8 +57,8 @@
                 <ion-icon item-left name="images" on-tap="presentActionSheet(i, 1)"></ion-icon>
               </ion-item>
             
-              <!-- Comment 1 -->
-              <ion-item>
+              <!-- Comment 1 - 2Photo -->
+              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type == '2-Photo'">
                 <ion-label floating>Comment</ion-label>
                 <ion-textarea type="text" formControlName="comment1"></ion-textarea>
               </ion-item>
@@ -71,6 +71,30 @@
                   <p *ngIf="!this.projectForm.controls.projPages.controls[i].value.photo2">Upload Photo 2</p>
                   <ion-icon item-left name="images" on-tap="presentActionSheet(i, 2)"></ion-icon>
                 </ion-item>
+
+                <!-- Photo 3 -->
+                <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type == '4-Photo'">
+                  <ion-thumbnail *ngIf="this.projectForm.controls.projPages.controls[i].value.photo3">
+                    <img [src]=this.projectForm.controls.projPages.controls[i].value.photo3 />
+                  </ion-thumbnail>
+                  <p *ngIf="!this.projectForm.controls.projPages.controls[i].value.photo3">Upload Photo 3</p>
+                  <ion-icon item-left name="images" on-tap="presentActionSheet(i, 3)"></ion-icon>
+                </ion-item>
+
+                <!-- Photo 4 -->
+                <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type == '4-Photo'">
+                <ion-thumbnail *ngIf="this.projectForm.controls.projPages.controls[i].value.photo4">
+                  <img [src]=this.projectForm.controls.projPages.controls[i].value.photo4 />
+                </ion-thumbnail>
+                <p *ngIf="!this.projectForm.controls.projPages.controls[i].value.photo4">Upload Photo 4</p>
+                <ion-icon item-left name="images" on-tap="presentActionSheet(i, 4)"></ion-icon>
+              </ion-item>
+
+              <!-- Comment 1 - 4Photo -->
+              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type !== '2-Photo'">
+                <ion-label floating>Comment</ion-label>
+                <ion-textarea type="text" formControlName="comment1"></ion-textarea>
+              </ion-item>
               
               <!-- comment 2 -->
               <ion-item>
@@ -85,7 +109,7 @@
 
   </form>
 
-  <p>ProjectForm value: {{ projectForm.value | json}}</p>
+  <!-- <p>ProjectForm value: {{ projectForm.value | json}}</p> -->
 
   <ion-fab left bottom #fab>
       <button ion-fab mini ><ion-icon name="add"></ion-icon></button>

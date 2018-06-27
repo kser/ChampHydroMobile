@@ -129,8 +129,8 @@ export class ReportService {
                                         alignment: 'center',
                                         margin: [0,0,0,15],
                                         columns: [
-                                            { image: district.projects[i].pages[j].photo1, width: 250, height: 187 },
-                                            { image: district.projects[i].pages[j].photo2, width: 250, height: 187 }
+                                            { image: district.projects[i].pages[j].photo3, width: 250, height: 187 },
+                                            { image: district.projects[i].pages[j].photo4, width: 250, height: 187 }
                                         ]
                                     });
                             } //row 2 photos end
