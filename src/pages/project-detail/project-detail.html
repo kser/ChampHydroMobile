@@ -63,7 +63,7 @@
               </ion-item>
             
               <!-- Comment 1 - 2Photo -->
-              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type == '2-Photo'">
+              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type !== '4-Photo'">
                 <ion-label floating>Comment</ion-label>
                 <ion-textarea type="text" formControlName="comment1"></ion-textarea>
               </ion-item>
@@ -96,7 +96,7 @@
               </ion-item>
 
               <!-- Comment 1 - 4Photo -->
-              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type !== '2-Photo'">
+              <ion-item *ngIf="this.projectForm.controls.projPages.controls[i].value.type == '4-Photo'">
                 <ion-label floating>Comment</ion-label>
                 <ion-textarea type="text" formControlName="comment1"></ion-textarea>
               </ion-item>
@@ -119,9 +119,9 @@
   <ion-fab left bottom #fab>
       <button ion-fab mini ><ion-icon name="add"></ion-icon></button>
       <ion-fab-list side="top">
-        <button (click)="addProjPage('panorama', fab)" ion-fab>
+        <button (click)="addProjPage('panoramas', fab)" ion-fab>
           <ion-icon name="barcode"></ion-icon>
-          <ion-label>Panoramics Page</ion-label>
+          <ion-label>Panoramas Page</ion-label>
         </button>
         <button (click)="addProjPage('4photo', fab)" ion-fab>
           <ion-icon name="albums"></ion-icon>

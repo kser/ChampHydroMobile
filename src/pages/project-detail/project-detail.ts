@@ -72,7 +72,7 @@ export class ProjectDetailPage {
 
   addProjPage(type, fab?: FabContainer): void {
     let newPage = new ProjPage();
-    if(type == "panorama") {
+    if(type == "panoramas") {
       newPage.type = "Panoramas";
       this.projPages.push(this.fb.group(newPage));
     } else if (type == "4photo") {
