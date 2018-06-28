@@ -160,7 +160,7 @@ export class ReportService {
                             if(district.projects[i].pages[j].comment1) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment1},
+                                        {text: district.projects[i].pages[j].comment1, margin: [0, 0, 0, 10]},
                                     ]
                                 });
                             }
@@ -170,7 +170,7 @@ export class ReportService {
                             if(district.projects[i].pages[j].comment2) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment2 },
+                                        {text: district.projects[i].pages[j].comment2, margin: [0, 0, 0, 10] },
                                     ]
                                 });
                             }
