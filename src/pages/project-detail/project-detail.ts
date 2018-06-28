@@ -125,13 +125,14 @@ export class ProjectDetailPage {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      saveToPhotoAlbum: saveToAlbum,     
+      saveToPhotoAlbum: true,     
     }
     
     this.camera.getPicture(options).then((imageData) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     console.log(base64Image);
     }, (err) => {
      // Handle error
     });
@@ -156,15 +157,16 @@ export class ProjectDetailPage {
     if (this.camera) {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
-        if(photoNum === 1){
-          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue('data:image/jpg;base64,' +  data);
-        } else if (photoNum ===2 ) {
-          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue('data:image/jpg;base64,' +  data);
-        } else if(photoNum === 3){
-          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue('data:image/jpg;base64,' +  data);
-        } else if (photoNum ===4 ) {
-          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue('data:image/jpg;base64,' +  data);
-        }
+        console.log("picture taken");
+        // if(photoNum === 1){
+        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue('data:image/jpg;base64,' +  data);
+        // } else if (photoNum ===2 ) {
+        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue('data:image/jpg;base64,' +  data);
+        // } else if(photoNum === 3){
+        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue('data:image/jpg;base64,' +  data);
+        // } else if (photoNum ===4 ) {
+        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue('data:image/jpg;base64,' +  data);
+        // }
       }, (err) => {
         // alert('Unable to load photo');
         if(photoNum === 1){
