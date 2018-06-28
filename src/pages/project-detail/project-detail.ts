@@ -26,7 +26,7 @@ export class ProjectDetailPage {
     public actionSheetCtrl: ActionSheetController, 
     public viewCtrl: ViewController, 
     private fb: FormBuilder, 
-    private camera: Camera) {
+    public camera: Camera) {
 
     this.selectedProject = navParams.get('project');
     this.createForm();
