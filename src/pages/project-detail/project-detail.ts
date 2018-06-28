@@ -128,7 +128,7 @@ export class ProjectDetailPage {
       quality: 100,
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
-      // saveToPhotoAlbum: saveToAlbum,     
+      saveToPhotoAlbum: saveToAlbum,     
       targetWidth: 500,
       targetHeight: 500,
       correctOrientation: true,
