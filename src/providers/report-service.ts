@@ -153,7 +153,7 @@ export class ReportService {
                                 ]
                             });
                             //Panorama Page
-                        } else if(district.projects[i].pages[j].type === 'Panorama'){
+                        } else if(district.projects[i].pages[j].type === 'Panoramas'){
                             if(district.projects[i].pages[j].photo1) {
                                 projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
                             }
