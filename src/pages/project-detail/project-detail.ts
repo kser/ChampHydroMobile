@@ -146,7 +146,7 @@ export class ProjectDetailPage {
       quality: 100,
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
-      saveToPhotoAlbum: saveToAlbum,     
+      // saveToPhotoAlbum: saveToAlbum,     
       targetWidth: 500,
       targetHeight: 500,
       correctOrientation: true,
@@ -158,15 +158,15 @@ export class ProjectDetailPage {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
         console.log("picture taken");
-        // if(photoNum === 1){
-        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue('data:image/jpg;base64,' +  data);
-        // } else if (photoNum ===2 ) {
-        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue('data:image/jpg;base64,' +  data);
-        // } else if(photoNum === 3){
-        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue('data:image/jpg;base64,' +  data);
-        // } else if (photoNum ===4 ) {
-        //   this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue('data:image/jpg;base64,' +  data);
-        // }
+        if(photoNum === 1){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo1'].patchValue('data:image/jpg;base64,' +  data);
+        } else if (photoNum ===2 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo2'].patchValue('data:image/jpg;base64,' +  data);
+        } else if(photoNum === 3){
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo3'].patchValue('data:image/jpg;base64,' +  data);
+        } else if (photoNum ===4 ) {
+          this.projectForm.controls['projPages']['controls'][pageNum]['controls']['photo4'].patchValue('data:image/jpg;base64,' +  data);
+        }
       }, (err) => {
         // alert('Unable to load photo');
         if(photoNum === 1){
