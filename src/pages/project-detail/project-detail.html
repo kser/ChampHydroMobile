@@ -30,6 +30,7 @@
 
 
 <ion-content padding>
+  <button ion-button (click)="testCamera()">Test Camera</button>
   <h2>Project Map</h2>
   <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
     <ion-list>

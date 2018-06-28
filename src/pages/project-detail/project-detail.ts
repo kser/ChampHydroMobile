@@ -119,6 +119,23 @@ export class ProjectDetailPage {
     actionSheet.present();
   }
 
+  testCamera(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+     // imageData is either a base64 encoded string or a file URI
+     // If it's base64 (DATA_URL):
+     let base64Image = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+     // Handle error
+    });
+  }
+
   takePicture(sourceType, saveToAlbum, pageNum, photoNum) {
 
     let defaultPhoto = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==';
@@ -132,7 +149,7 @@ export class ProjectDetailPage {
       targetHeight: 700,
       correctOrientation: true,
     }
-    console.log(this.projectForm);
+
     if (this.camera) {
       this.camera.getPicture(cameraOptions)
       .then((data) => {
