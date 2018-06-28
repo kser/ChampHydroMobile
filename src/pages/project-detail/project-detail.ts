@@ -124,7 +124,8 @@ export class ProjectDetailPage {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
+      mediaType: this.camera.MediaType.PICTURE,
+      saveToPhotoAlbum: saveToAlbum,     
     }
     
     this.camera.getPicture(options).then((imageData) => {
@@ -145,9 +146,11 @@ export class ProjectDetailPage {
       sourceType: sourceType,
       destinationType: this.camera.DestinationType.DATA_URL,
       saveToPhotoAlbum: saveToAlbum,     
-      targetWidth: 700,
-      targetHeight: 700,
+      targetWidth: 500,
+      targetHeight: 500,
       correctOrientation: true,
+      mediaType: this.camera.MediaType.PICTURE,
+      encodingType: this.camera.EncodingType.JPEG
     }
 
     if (this.camera) {
