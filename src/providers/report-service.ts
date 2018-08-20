@@ -47,6 +47,11 @@ export class ReportService {
 
         var getContent = () => {
             let projContent = [];
+            let picMult = 1.05;
+            let picXPos = 80;
+            let picHeight = 300 * picMult;
+            let picWidth = 400 * picMult;
+            let commSpace = 45;
 
             //Title Page
             projContent.push(
@@ -67,7 +72,7 @@ export class ReportService {
 
                 //Project Name
                 projContent.push( 
-                     { text: district.projects[i].name, pageBreak: 'before', style: 'header', margin: [0,30,0,20]},
+                     { text: district.projects[i].name, pageBreak: 'before', style: 'header', margin: [0,0,0,20]},
                     );
 
                 //Project Map
@@ -102,25 +107,25 @@ export class ReportService {
                         // 2-Photo Pages
                         if(district.projects[i].pages[j].type === '2-Photo'){
                             if(district.projects[i].pages[j].photo1) {
-                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: 400, height: 300, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: picWidth, height: picHeight, absolutePosition: {x: 45, y: picXPos} });
                             }
                             if(district.projects[i].pages[j].comment1) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment1, margin: [60, 0, 0, 10]},
+                                        {text: district.projects[i].pages[j].comment1, absolutePosition: {x: 90, y: picXPos + picHeight + 5} },
                                     ]
                                 });
-                            }
+                            } 
                             if(district.projects[i].pages[j].photo2) {
-                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: 400, height: 300, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: picWidth , height: picHeight, absolutePosition: {x: 45, y: picXPos + picHeight + commSpace} });
                             }
                             if(district.projects[i].pages[j].comment2) {
                                 projContent.push(
                                     { ul: [
-                                        {text: district.projects[i].pages[j].comment2, margin: [60, 0, 0, 10]},
+                                        {text: district.projects[i].pages[j].comment2, absolutePosition: {x: 90, y: picXPos + picHeight + commSpace + picHeight + 5 } },
                                     ]
                                 });
-                            }
+                            } 
                             //4-Photo Pages
                         } else if(district.projects[i].pages[j].type === '4-Photo'){
                             if(district.projects[i].pages[j].photo1 && district.projects[i].pages[j].photo2) {
@@ -155,7 +160,7 @@ export class ReportService {
                             //Panorama Page
                         } else if(district.projects[i].pages[j].type === 'Panoramas'){
                             if(district.projects[i].pages[j].photo1) {
-                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', fit: [500, 300], margin: [0, 0, 0, 10] });
                             }
                             if(district.projects[i].pages[j].comment1) {
                                 projContent.push(
@@ -165,7 +170,7 @@ export class ReportService {
                                 });
                             }
                             if(district.projects[i].pages[j].photo2) {
-                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: 500, margin: [0, 0, 0, 10] });
+                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', fit: [500, 300], margin: [0, 0, 0, 10] });
                             }
                             if(district.projects[i].pages[j].comment2) {
                                 projContent.push(
