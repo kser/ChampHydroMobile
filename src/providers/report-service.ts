@@ -60,7 +60,7 @@ export class ReportService {
                 { text: 'Detention and Drainage Facilities Report', alignment: 'center', style: 'subheader' },
                 { text: this.reportData.Date, alignment: 'center', style: 'subheader', margin: [0, 0, 0, 20] },
                 
-                { image: district.map, alignment: 'center', width: 550, margin: [0, 0, 0, 20] },
+                { image: district.map, alignment: 'center', fit: [550, 550], margin: [0, 0, 0, 20] },
 
                 { text: '13226 Kaltenbrun  ~  Houston, Texas  77086  ~  Phone: 281-744-9538  ~  Fax: 281-445-2349', style: 'info', margin: [0,0,0,10]},
                 { text: "Account Representattive: " + this.reportData.Rep + "  ~ Email: " + this.reportData.Email, style: 'info' },
@@ -80,11 +80,11 @@ export class ReportService {
                     if(district.projects[i].map){
                         //convert to base64 project map here?
                     projContent.push(
-                            { image: district.projects[i].map, pageBreak: 'after', alignment: 'center', width: 550, margin: [0, 0, 0, 20] }
+                            { image: district.projects[i].map, pageBreak: 'after', alignment: 'center', fit: [550, 550], margin: [0, 0, 0, 20] }
                         );
                     } else if (district.map) { //default to district map
                         projContent.push(
-                            { image: district.map, alignment: 'center', pageBreak: 'after', width: 550, margin: [0, 0, 0, 20] }
+                            { image: district.map, alignment: 'center', pageBreak: 'after', fit: [550, 550], margin: [0, 0, 0, 20] }
                         );
                     }
                 }
@@ -107,7 +107,7 @@ export class ReportService {
                         // 2-Photo Pages
                         if(district.projects[i].pages[j].type === '2-Photo'){
                             if(district.projects[i].pages[j].photo1) {
-                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', width: picWidth, height: picHeight, absolutePosition: {x: 45, y: picXPos} });
+                                projContent.push({ image: district.projects[i].pages[j].photo1, alignment: 'center', fit: [picWidth, picHeight], absolutePosition: {x: 45, y: picXPos} });
                             }
                             if(district.projects[i].pages[j].comment1) {
                                 projContent.push(
@@ -117,7 +117,7 @@ export class ReportService {
                                 });
                             } 
                             if(district.projects[i].pages[j].photo2) {
-                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', width: picWidth , height: picHeight, absolutePosition: {x: 45, y: picXPos + picHeight + commSpace} });
+                                projContent.push({ image: district.projects[i].pages[j].photo2, alignment: 'center', fit: [picWidth, picHeight], absolutePosition: {x: 45, y: picXPos + picHeight + commSpace} });
                             }
                             if(district.projects[i].pages[j].comment2) {
                                 projContent.push(
