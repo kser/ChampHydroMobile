@@ -127,6 +127,7 @@ export class ReportService {
                                 });
                             } 
                             //4-Photo Pages
+                            //TODO: absolutePosition this page
                         } else if(district.projects[i].pages[j].type === '4-Photo'){
                             if(district.projects[i].pages[j].photo1 && district.projects[i].pages[j].photo2) {
                                 projContent.push(
